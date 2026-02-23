@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PowerClaw - OpenClaw 使用技巧与自动化指南</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            padding: 60px 20px;
+            color: white;
+        }
+        
+        header h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        header p {
+            font-size: 1.3em;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        .feature-card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 50px rgba(0,0,0,0.15);
+        }
+        
+        .feature-card h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.4em;
+        }
+        
+        .feature-card p {
+            color: #666;
+            line-height: 1.8;
+        }
+        
+        .content-section {
+            background: white;
+            border-radius: 12px;
+            padding: 40px;
+            margin: 30px 0;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+        
+        .content-section h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+            font-size: 2em;
+        }
+        
+        .content-section ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .content-section li {
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .content-section li:last-child {
+            border-bottom: none;
+        }
+        
+        .content-section a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .content-section a:hover {
+            text-decoration: underline;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 15px 40px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 20px 0;
+            transition: background 0.3s;
+        }
+        
+        .cta-button:hover {
+            background: #764ba2;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: white;
+            opacity: 0.8;
+        }
+        
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            margin: 40px 0;
+            flex-wrap: wrap;
+        }
+        
+        .stat-item {
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .stat-number {
+            font-size: 3em;
+            font-weight: bold;
+            color: white;
+        }
+        
+        .stat-label {
+            color: rgba(255,255,255,0.8);
+            margin-top: 10px;
+        }
+        
+        code {
+            background: #f4f4f4;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+        
+        .tip-box {
+            background: #e8f4fd;
+            border-left: 4px solid #667eea;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        
+        .tip-box h4 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🚀 PowerClaw</h1>
+            <p>OpenClaw 使用技巧与自动化指南 - 让 AI 成为你的超级助手</p>
+        </header>
+        
+        <div class="stats">
+            <div class="stat-item">
+                <div class="stat-number">30+</div>
+                <div class="stat-label">集成工具</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">100%</div>
+                <div class="stat-label">自动化</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">0</div>
+                <div class="stat-label">代码要求</div>
+            </div>
+        </div>
+        
+        <div class="features">
+            <div class="feature-card">
+                <h3>🤖 AI 自动化</h3>
+                <p>使用自然语言描述任务，AI 自动完成。无需编程，只需说出你的需求。</p>
+            </div>
+            <div class="feature-card">
+                <h3>🔧 丰富技能</h3>
+                <p>30+ 内置技能，涵盖网络搜索、浏览器控制、文件操作、消息发送等。</p>
+            </div>
+            <div class="feature-card">
+                <h3>📊 工作流</h3>
+                <p>创建自动化工作流，定时执行或事件触发，解放你的时间。</p>
+            </div>
+            <div class="feature-card">
+                <h3>🔒 安全可靠</h3>
+                <p>本地优先，数据可控。所有操作可追溯，安全有保障。</p>
+            </div>
+            <div class="feature-card">
+                <h3>🚀 MCP 支持</h3>
+                <p>集成 Model Context Protocol，连接无限可能的外部工具。</p>
+            </div>
+            <div class="feature-card">
+                <h3>💡 智能记忆</h3>
+                <p>长期记忆系统，AI 会记住你的偏好和历史，越用越懂你。</p>
+            </div>
+        </div>
+        
+        <div class="content-section">
+            <h2>📚 快速开始</h2>
+            <ul>
+                <li>
+                    <a href="docs/getting-started.html">快速开始指南</a> - 5 分钟上手 OpenClaw
+                </li>
+                <li>
+                    <a href="docs/core-concepts.html">核心概念</a> - 理解代理、技能、工作流
+                </li>
+                <li>
+                    <a href="docs/automation.html">自动化工作流</a> - 创建你的第一个自动化任务
+                </li>
+                <li>
+                    <a href="docs/mcp-servers.html">MCP 服务器</a> - 扩展 AI 能力
+                </li>
+            </ul>
+            
+            <div class="tip-box">
+                <h4>💡 安装提示</h4>
+                <p>使用 Homebrew 一键安装: <code>brew install openclaw</code></p>
+            </div>
+        </div>
+        
+        <div class="content-section">
+            <h2>🎯 实战案例</h2>
+            <ul>
+                <li>
+                    <strong>每日新闻摘要</strong> - 自动获取科技新闻并发送邮件
+                </li>
+                <li>
+                    <strong>代码自动审查</strong> - Git 提交前自动检查代码质量
+                </li>
+                <li>
+                    <strong>社交媒体发布</strong> - 自动从 RSS 读取并发布内容
+                </li>
+                <li>
+                    <strong>数据备份</strong> - 定期备份重要数据到云端
+                </li>
+                <li>
+                    <strong>智能投资</strong> - 监控市场并执行投资策略
+                </li>
+            </ul>
+            
+            <a href="docs/automation.html" class="cta-button">查看完整案例</a>
+        </div>
+        
+        <div class="content-section">
+            <h2>🛠️ 常用技巧</h2>
+            <ul>
+                <li>
+                    <strong>管道操作</strong> - <code>echo "分析代码" | openclaw ask</code>
+                </li>
+                <li>
+                    <strong>批量处理</strong> - <code>openclaw batch *.md --action "翻译"</code>
+                </li>
+                <li>
+                    <strong>定时任务</strong> - <code>openclaw cron add "0 9 * * *" "任务"</code>
+                </li>
+                <li>
+                    <strong>使用技能</strong> - <code>openclaw skills use web-search "查询"</code>
+                </li>
+            </ul>
+        </div>
+        
+        <div class="content-section">
+            <h2>📖 文档导航</h2>
+            <ul>
+                <li><a href="README.md">项目介绍</a></li>
+                <li><a href="docs/getting-started.html">快速开始</a></li>
+                <li><a href="docs/core-concepts.html">核心概念</a></li>
+                <li><a href="docs/automation.html">自动化指南</a></li>
+                <li><a href="docs/mcp-servers.html">MCP 服务器</a></li>
+                <li><a href="docs/skills.html">技能系统</a></li>
+            </ul>
+        </div>
+        
+        <footer>
+            <p>Powered by OpenClaw 🤖 | 自动化你的数字生活</p>
+            <p>GitHub: <a href="https://github.com/jovon-hot/powerclaw" style="color: white;">github.com/jovon-hot/powerclaw</a></p>
+        </footer>
+    </div>
+</body>
+</html>
