@@ -8,24 +8,30 @@
         :root { --bg: #0a0a0a; --bg-card: #161616; --text: #fff; --text-sec: #999; --border: #2a2a2a; }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; max-width: 900px; margin: 0 auto; padding: 40px 20px; }
-        h1 { font-size: 2rem; margin-bottom: 30px; border-bottom: 1px solid var(--border); padding-bottom: 15px; }
-        h2 { font-size: 1.5rem; margin: 40px 0 20px; color: var(--text); }
+        h1 { font-size: 2rem; margin-bottom: 30px; border-bottom: 1px solid var(--border); padding-bottom: 15px; color: var(--text); }
+        h2 { font-size: 1.5rem; margin: 40px 0 20px; color: var(--text); border-bottom: 1px solid var(--border); padding-bottom: 10px; }
         h3 { font-size: 1.2rem; margin: 30px 0 15px; color: var(--text-sec); }
+        h4 { font-size: 1.1rem; margin: 25px 0 12px; color: var(--text-sec); }
         p { margin-bottom: 15px; color: var(--text-sec); }
         ul, ol { margin: 15px 0; padding-left: 30px; color: var(--text-sec); }
         li { margin: 8px 0; }
         a { color: #4a9eff; text-decoration: none; }
         a:hover { text-decoration: underline; }
-        code { background: var(--bg-card); padding: 2px 8px; border-radius: 4px; font-family: monospace; font-size: 0.9em; }
-        pre { background: var(--bg-card); padding: 20px; border-radius: 8px; overflow-x: auto; margin: 20px 0; }
-        pre code { background: none; padding: 0; }
-        blockquote { border-left: 3px solid var(--text-sec); padding-left: 20px; margin: 20px 0; color: var(--text-sec); }
+        code { background: var(--bg-card); padding: 2px 8px; border-radius: 4px; font-family: 'Monaco', 'Menlo', monospace; font-size: 0.9em; color: #e6e6e6; }
+        pre { background: var(--bg-card); padding: 20px; border-radius: 8px; overflow-x: auto; margin: 20px 0; border: 1px solid var(--border); }
+        pre code { background: none; padding: 0; color: #e6e6e6; }
+        blockquote { border-left: 3px solid #4a9eff; padding-left: 20px; margin: 20px 0; color: var(--text-sec); font-style: italic; }
         table { width: 100%; border-collapse: collapse; margin: 20px 0; }
         th, td { padding: 12px; text-align: left; border-bottom: 1px solid var(--border); }
-        th { color: var(--text); }
+        th { color: var(--text); background: var(--bg-card); font-weight: 600; }
+        tr:hover { background: rgba(255,255,255,0.02); }
+        hr { border: none; border-top: 1px solid var(--border); margin: 30px 0; }
         .nav { margin-bottom: 40px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
-        .nav a { color: var(--text-sec); margin-right: 20px; }
+        .nav a { color: var(--text-sec); margin-right: 20px; text-decoration: none; }
         .nav a:hover { color: var(--text); }
+        .meta { color: var(--text-sec); font-size: 0.9em; margin-bottom: 30px; }
+        strong { color: var(--text); }
+        em { font-style: italic; }
     </style>
 </head>
 <body>
@@ -34,420 +40,380 @@
         <a href="/powerclaw/docs/">文档索引</a>
     </div>
     <article>
-u003ch1u003e精品 Skill 推荐
+<h1>精品 Skill 推荐</h1>
 
-OpenClaw 的强大之处在于丰富的技能生态系统。以下是经过验证的精品技能推荐。
+<p>OpenClaw 的强大之处在于丰富的技能生态系统。以下是经过验证的精品技能推荐。</p>
 
----
-
-u003ch2u003e🌟 必装技能
+<hr>
 
-u003ch3u003e1. u003cstrongu003eweb-searchu003c/strongu003e - 网络搜索增强
-u003cstrongu003e功能u003c/strongu003e: 让 AI 能够实时搜索网络信息
-
-u003cstrongu003e使用场景u003c/strongu003e:
-u003cliu003e获取最新信息
-u003cliu003e验证事实
-u003cliu003e研究竞品
-u003cliu003e监控趋势
-
-u003cstrongu003e安装u003c/strongu003e:
-u003cpreu003eu003ccodeu003ebash
-openclaw skills install web-search
-u003cpreu003eu003ccodeu003e
-
-u003cstrongu003e示例u003c/strongu003e:
-u003cpreu003eu003ccodeu003ebash
-openclaw exec "搜索 OpenAI 最新的产品发布"
-openclaw exec "查找 2025 年最好的 DeFi 项目"
-u003cpreu003eu003ccodeu003e
-
----
-
-u003ch3u003e2. u003cstrongu003ebrowseru003c/strongu003e - 浏览器自动化
-u003cstrongu003e功能u003c/strongu003e: 控制浏览器，自动化网页操作
-
-u003cstrongu003e使用场景u003c/strongu003e:
-u003cliu003e自动填写表单
-u003cliu003e网页数据抓取
-u003cliu003e自动化测试
-u003cliu003e截图监控
-
-u003cstrongu003e安装u003c/strongu003e:
-u003cpreu003eu003ccodeu003ebash
-openclaw skills install browser
-u003cpreu003eu003ccodeu003e
-
-u003cstrongu003e示例u003c/strongu003e:
-u003cpreu003eu003ccodeu003ebash
-openclaw exec "打开 GitHub 并搜索 'openclaw'"
-openclaw exec "截取 Google 首页的截图"
-u003cpreu003eu003ccodeu003e
-
----
-
-u003ch3u003e3. u003cstrongu003efile-systemu003c/strongu003e - 文件系统操作
-u003cstrongu003e功能u003c/strongu003e: 增强的文件读写和管理能力
-
-u003cstrongu003e使用场景u003c/strongu003e:
-u003cliu003e批量文件处理
-u003cliu003e自动备份
-u003cliu003e文件转换
-u003cliu003e目录管理
-
-u003cstrongu003e安装u003c/strongu003e:
-u003cpreu003eu003ccodeu003ebash
-openclaw skills install file-system
-u003cpreu003eu003ccodeu003e
-
-u003cstrongu003e示例u003c/strongu003e:
-u003cpreu003eu003ccodeu003ebash
-openclaw exec "将当前目录的所有 .txt 文件转换为 .md"
-openclaw exec "备份 ~/Documents 到 ~/Backups"
-u003cpreu003eu003ccodeu003e
-
----
-
-u003ch3u003e4. u003cstrongu003emessagingu003c/strongu003e - 消息发送
-u003cstrongu003e功能u003c/strongu003e: 发送邮件、Slack、Telegram 消息
-
-u003cstrongu003e使用场景u003c/strongu003e:
-u003cliu003e定时通知
-u003cliu003e报告发送
-u003cliu003e告警提醒
-u003cliu003e团队协作
-
-u003cstrongu003e安装u003c/strongu003e:
-u003cpreu003eu003ccodeu003ebash
-openclaw skills install messaging
-u003cpreu003eu003ccodeu003e
-
-u003cstrongu003e示例u003c/strongu003e:
-u003cpreu003eu003ccodeu003ebash
-openclaw exec "发送邮件给 team@example.com，主题是今日报告"
-openclaw exec "发送 Slack 消息到 #general 频道"
-u003cpreu003eu003ccodeu003e
-
----
-
-u003ch2u003e💎 高级技能
-
-u003ch3u003e5. u003cstrongu003ecode-execu003c/strongu003e - 代码执行
-u003cstrongu003e功能u003c/strongu003e: 安全地执行代码片段
-
-u003cstrongu003e使用场景u003c/strongu003e:
-u003cliu003e快速测试代码
-u003cliu003e数据处理
-u003cliu003e自动化脚本
-u003cliu003e算法验证
-
-u003cstrongu003e安装u003c/strongu003e:
-u003cpreu003eu003ccodeu003ebash
-openclaw skills install code-exec
-u003cpreu003eu003ccodeu003e
-
-u003cstrongu003e示例u003c/strongu003e:
-u003cpreu003eu003ccodeu003ebash
-openclaw exec "运行 Python 代码计算斐波那契数列"
-openclaw exec "执行 Node.js 脚本处理 JSON 数据"
-u003cpreu003eu003ccodeu003e
-
----
-
-u003ch3u003e6. u003cstrongu003edatabaseu003c/strongu003e - 数据库操作
-u003cstrongu003e功能u003c/strongu003e: 连接和操作数据库
-
-u003cstrongu003e使用场景u003c/strongu003e:
-u003cliu003e数据分析
-u003cliu003e报表生成
-u003cliu003e自动化备份
-u003cliu003e数据迁移
-
-u003cstrongu003e安装u003c/strongu003e:
-u003cpreu003eu003ccodeu003ebash
-openclaw skills install database
-u003cpreu003eu003ccodeu003e
-
-u003cstrongu003e示例u003c/strongu003e:
-u003cpreu003eu003ccodeu003ebash
-openclaw exec "查询数据库中的最新 10 条记录"
-openclaw exec "生成用户统计报告"
-u003cpreu003eu003ccodeu003e
-
----
-
-u003ch3u003e7. u003cstrongu003eimageu003c/strongu003e - 图像处理
-u003cstrongu003e功能u003c/strongu003e: 图像生成、编辑、分析
-
-u003cstrongu003e使用场景u003c/strongu003e:
-u003cliu003e批量图像处理
-u003cliu003e图像生成
-u003cliu003eOCR 文字识别
-u003cliu003e图像优化
-
-u003cstrongu003e安装u003c/strongu003e:
-u003cpreu003eu003ccodeu003ebash
-openclaw skills install image
-u003cpreu003eu003ccodeu003e
-
-u003cstrongu003e示例u003c/strongu003e:
-u003cpreu003eu003ccodeu003ebash
-openclaw exec "压缩当前目录的所有图片到 50% 质量"
-openclaw exec "识别这张图片中的文字" < image.png
-u003cpreu003eu003ccodeu003e
-
----
-
-u003ch3u003e8. u003cstrongu003evideou003c/strongu003e - 视频处理
-u003cstrongu003e功能u003c/strongu003e: 视频编辑、转码、分析
-
-u003cstrongu003e使用场景u003c/strongu003e:
-u003cliu003e批量转码
-u003cliu003e视频剪辑
-u003cliu003e提取音频
-u003cliu003e生成字幕
-
-u003cstrongu003e安装u003c/strongu003e:
-u003cpreu003eu003ccodeu003ebash
-openclaw skills install video
-u003cpreu003eu003ccodeu003e
-
-u003cstrongu003e示例u003c/strongu003e:
-u003cpreu003eu003ccodeu003ebash
-openclaw exec "将 video.mp4 转换为 720p 版本"
-openclaw exec "提取视频中的音频保存为 MP3"
-u003cpreu003eu003ccodeu003e
-
----
-
-u003ch2u003e🎯 专业领域技能
-
-u003ch3u003e9. u003cstrongu003ecryptou003c/strongu003e - 加密货币
-u003cstrongu003e功能u003c/strongu003e: 获取价格、分析市场、执行交易
-
-u003cstrongu003e使用场景u003c/strongu003e:
-u003cliu003e价格监控
-u003cliu003e投资组合管理
-u003cliu003e自动化交易
-u003cliu003e市场分析
-
-u003cstrongu003e安装u003c/strongu003e:
-u003cpreu003eu003ccodeu003ebash
-openclaw skills install crypto
-u003cpreu003eu003ccodeu003e
-
-u003cstrongu003e示例u003c/strongu003e:
-u003cpreu003eu003ccodeu003ebash
-openclaw exec "获取 BTC 当前价格和 24h 变化"
-openclaw exec "分析我的投资组合表现"
-u003cpreu003eu003ccodeu003e
-
----
-
-u003ch3u003e10. u003cstrongu003egitu003c/strongu003e - Git 增强
-u003cstrongu003e功能u003c/strongu003e: 高级 Git 操作和自动化
-
-u003cstrongu003e使用场景u003c/strongu003e:
-u003cliu003e自动生成提交信息
-u003cliu003e批量分支管理
-u003cliu003e代码审查辅助
-u003cliu003e版本分析
-
-u003cstrongu003e安装u003c/strongu003e:
-u003cpreu003eu003ccodeu003ebash
-openclaw skills install git
-u003cpreu003eu003ccodeu003e
-
-u003cstrongu003e示例u003c/strongu003e:
-u003cpreu003eu003ccodeu003ebash
-openclaw exec "基于当前更改生成提交信息"
-openclaw exec "分析这个仓库的贡献统计"
-u003cpreu003eu003ccodeu003e
-
----
-
-u003ch3u003e11. u003cstrongu003eapiu003c/strongu003e - API 集成
-u003cstrongu003e功能u003c/strongu003e: 快速集成各种第三方 API
-
-u003cstrongu003e使用场景u003c/strongu003e:
-u003cliu003e数据同步
-u003cliu003e服务集成
-u003cliu003e自动化工作流
-u003cliu003e数据采集
-
-u003cstrongu003e安装u003c/strongu003e:
-u003cpreu003eu003ccodeu003ebash
-openclaw skills install api
-u003cpreu003eu003ccodeu003e
-
-u003cstrongu003e示例u003c/strongu003e:
-u003cpreu003eu003ccodeu003ebash
-openclaw exec "调用天气 API 获取明天北京的天气"
-openclaw exec "同步数据到 Notion"
-u003cpreu003eu003ccodeu003e
-
----
-
-u003ch3u003e12. u003cstrongu003epdfu003c/strongu003e - PDF 处理
-u003cstrongu003e功能u003c/strongu003e: PDF 生成、编辑、转换
-
-u003cstrongu003e使用场景u003c/strongu003e:
-u003cliu003e报告生成
-u003cliu003e批量转换
-u003cliu003e表单填写
-u003cliu003e文档合并
-
-u003cstrongu003e安装u003c/strongu003e:
-u003cpreu003eu003ccodeu003ebash
-openclaw skills install pdf
-u003cpreu003eu003ccodeu003e
-
-u003cstrongu003e示例u003c/strongu003e:
-u003cpreu003eu003ccodeu003ebash
-openclaw exec "将 Markdown 转换为 PDF"
-openclaw exec "合并多个 PDF 文件"
-u003cpreu003eu003ccodeu003e
-
----
-
-u003ch2u003e🔧 开发工具技能
-
-u003ch3u003e13. u003cstrongu003edockeru003c/strongu003e - Docker 管理
-u003cstrongu003e功能u003c/strongu003e: 容器化操作和管理
-
-u003cstrongu003e示例u003c/strongu003e:
-u003cpreu003eu003ccodeu003ebash
-openclaw exec "构建当前目录的 Docker 镜像"
-openclaw exec "列出所有运行中的容器"
-u003cpreu003eu003ccodeu003e
-
-u003ch3u003e14. u003cstrongu003eawsu003c/strongu003e - AWS 云服务
-u003cstrongu003e功能u003c/strongu003e: 操作 AWS 资源
-
-u003cstrongu003e示例u003c/strongu003e:
-u003cpreu003eu003ccodeu003ebash
-openclaw exec "启动一个 EC2 实例"
-openclaw exec "列出所有 S3 存储桶"
-u003cpreu003eu003ccodeu003e
-
-u003ch3u003e15. u003cstrongu003esqlu003c/strongu003e - SQL 查询
-u003cstrongu003e功能u003c/strongu003e: 自然语言转 SQL
-
-u003cstrongu003e示例u003c/strongu003e:
-u003cpreu003eu003ccodeu003ebash
-openclaw exec "生成查询最近 7 天活跃用户的 SQL"
-openclaw exec "优化这段 SQL 查询"
-u003cpreu003eu003ccodeu003e
-
----
-
-u003ch2u003e🎨 创意技能
-
-u003ch3u003e16. u003cstrongu003echartu003c/strongu003e - 图表生成
-u003cstrongu003e功能u003c/strongu003e: 自动生成数据可视化图表
-
-u003cstrongu003e示例u003c/strongu003e:
-u003cpreu003eu003ccodeu003ebash
-openclaw exec "基于这些数据生成柱状图"
-openclaw exec "创建一个展示销售趋势的折线图"
-u003cpreu003eu003ccodeu003e
-
-u003ch3u003e17. u003cstrongu003emapu003c/strongu003e - 地图服务
-u003cstrongu003e功能u003c/strongu003e: 地理信息处理和可视化
-
-u003cstrongu003e示例u003c/strongu003e:
-u003cpreu003eu003ccodeu003ebash
-openclaw exec "显示这些地址在地图上的位置"
-openclaw exec "计算两个城市之间的距离"
-u003cpreu003eu003ccodeu003e
-
-u003ch3u003e18. u003cstrongu003etranslateu003c/strongu003e - 翻译增强
-u003cstrongu003e功能u003c/strongu003e: 高质量多语言翻译
-
-u003cstrongu003e示例u003c/strongu003e:
-u003cpreu003eu003ccodeu003ebash
-openclaw exec "将这份文档翻译成日语"
-openclaw exec "翻译并保持 Markdown 格式"
-u003cpreu003eu003ccodeu003e
-
----
-
-u003ch2u003e📊 技能对比表
-
-u003ctdu003e技能u003c/tdu003e 难度 | 使用频率 | 推荐度 |
-|------|------|---------|--------|
-u003ctdu003eweb-searchu003c/tdu003e ⭐ | 🔥🔥🔥🔥🔥 | ⭐⭐⭐⭐⭐ |
-u003ctdu003ebrowseru003c/tdu003e ⭐⭐ | 🔥🔥🔥🔥 | ⭐⭐⭐⭐⭐ |
-u003ctdu003efile-systemu003c/tdu003e ⭐ | 🔥🔥🔥🔥 | ⭐⭐⭐⭐⭐ |
-u003ctdu003emessagingu003c/tdu003e ⭐⭐ | 🔥🔥🔥 | ⭐⭐⭐⭐ |
-u003ctdu003ecode-execu003c/tdu003e ⭐⭐ | 🔥🔥🔥🔥 | ⭐⭐⭐⭐ |
-u003ctdu003ecryptou003c/tdu003e ⭐⭐⭐ | 🔥🔥🔥 | ⭐⭐⭐⭐ |
-u003ctdu003egitu003c/tdu003e ⭐ | 🔥🔥🔥🔥 | ⭐⭐⭐⭐⭐ |
-u003ctdu003eimageu003c/tdu003e ⭐⭐ | 🔥🔥🔥 | ⭐⭐⭐⭐ |
-u003ctdu003epdfu003c/tdu003e ⭐ | 🔥🔥 | ⭐⭐⭐ |
-u003ctdu003eapiu003c/tdu003e ⭐⭐ | 🔥🔥🔥🔥 | ⭐⭐⭐⭐ |
-
----
-
-u003ch2u003e🚀 快速开始
-
-u003ch3u003e安装多个技能
-u003cpreu003eu003ccodeu003ebash
-u003ch1u003e安装所有推荐技能
-openclaw skills install web-search browser file-system messaging git
-u003cpreu003eu003ccodeu003e
-
-u003ch3u003e查看已安装技能
-u003cpreu003eu003ccodeu003ebash
-openclaw skills list
-u003cpreu003eu003ccodeu003e
-
-u003ch3u003e更新技能
-u003cpreu003eu003ccodeu003ebash
-openclaw skills update web-search
-u003cpreu003eu003ccodeu003e
-
-u003ch3u003e卸载技能
-u003cpreu003eu003ccodeu003ebash
-openclaw skills uninstall old-skill
-u003cpreu003eu003ccodeu003e
-
----
-
-u003ch2u003e🎓 技能开发
-
-想要开发自己的技能？
-
-u003ch3u003e技能结构
-u003cpreu003eu003ccodeu003e
-my-skill/
-├── skill.yaml      # 技能配置
-├── index.js        # 主入口
-└── README.md       # 说明文档
-u003cpreu003eu003ccodeu003e
-
-u003ch3u003e基本模板
-u003cpreu003eu003ccodeu003ejavascript
-// index.js
-module.exports = {
-  name: 'my-skill',
-  version: '1.0.0',
-  
-  async execute(context, params) {
-    // 实现技能逻辑
-    return result;
-  }
-};
-u003cpreu003eu003ccodeu003e
-
-u003ch3u003e发布技能
-u003cpreu003eu003ccodeu003ebash
-openclaw skills publish ./my-skill
-u003cpreu003eu003ccodeu003e
-
----
-
-u003cstrongu003e更多技能请访问 OpenClaw 技能市场!u003c/strongu003e
+<h2>🌟 必装技能</h2>
+
+<h3>1. <strong>web-search</strong> - 网络搜索增强</h3>
+<p><strong>功能</strong>: 让 AI 能够实时搜索网络信息</p>
+
+<p><strong>使用场景</strong>:</p>
+<ul>
+<li>获取最新信息</li>
+<li>验证事实</li>
+<li>研究竞品</li>
+<li>监控趋势</li>
+<p></ul></p>
+
+<p><strong>安装</strong>:</p>
+<pre><code>openclaw skills install web-search
+<p></code></pre></p>
+
+<p><strong>示例</strong>:</p>
+<pre><code>openclaw exec "搜索 OpenAI 最新的产品发布"
+<p>openclaw exec "查找 2025 年最好的 DeFi 项目" </code></pre></p>
+
+<hr>
+
+<h3>2. <strong>browser</strong> - 浏览器自动化</h3>
+<p><strong>功能</strong>: 控制浏览器，自动化网页操作</p>
+
+<p><strong>使用场景</strong>:</p>
+<ul>
+<li>自动填写表单</li>
+<li>网页数据抓取</li>
+<li>自动化测试</li>
+<li>截图监控</li>
+<p></ul></p>
+
+<p><strong>安装</strong>:</p>
+<pre><code>openclaw skills install browser
+<p></code></pre></p>
+
+<p><strong>示例</strong>:</p>
+<pre><code>openclaw exec "打开 GitHub 并搜索 'openclaw'"
+<p>openclaw exec "截取 Google 首页的截图" </code></pre></p>
+
+<hr>
+
+<h3>3. <strong>file-system</strong> - 文件系统操作</h3>
+<p><strong>功能</strong>: 增强的文件读写和管理能力</p>
+
+<p><strong>使用场景</strong>:</p>
+<ul>
+<li>批量文件处理</li>
+<li>自动备份</li>
+<li>文件转换</li>
+<li>目录管理</li>
+<p></ul></p>
+
+<p><strong>安装</strong>:</p>
+<pre><code>openclaw skills install file-system
+<p></code></pre></p>
+
+<p><strong>示例</strong>:</p>
+<pre><code>openclaw exec "将当前目录的所有 .txt 文件转换为 .md"
+<p>openclaw exec "备份 ~/Documents 到 ~/Backups" </code></pre></p>
+
+<hr>
+
+<h3>4. <strong>messaging</strong> - 消息发送</h3>
+<p><strong>功能</strong>: 发送邮件、Slack、Telegram 消息</p>
+
+<p><strong>使用场景</strong>:</p>
+<ul>
+<li>定时通知</li>
+<li>报告发送</li>
+<li>告警提醒</li>
+<li>团队协作</li>
+<p></ul></p>
+
+<p><strong>安装</strong>:</p>
+<pre><code>openclaw skills install messaging
+<p></code></pre></p>
+
+<p><strong>示例</strong>:</p>
+<pre><code>openclaw exec "发送邮件给 team@example.com，主题是今日报告"
+<p>openclaw exec "发送 Slack 消息到 #general 频道" </code></pre></p>
+
+<hr>
+
+<h2>💎 高级技能</h2>
+
+<h3>5. <strong>code-exec</strong> - 代码执行</h3>
+<p><strong>功能</strong>: 安全地执行代码片段</p>
+
+<p><strong>使用场景</strong>:</p>
+<ul>
+<li>快速测试代码</li>
+<li>数据处理</li>
+<li>自动化脚本</li>
+<li>算法验证</li>
+<p></ul></p>
+
+<p><strong>安装</strong>:</p>
+<pre><code>openclaw skills install code-exec
+<p></code></pre></p>
+
+<p><strong>示例</strong>:</p>
+<pre><code>openclaw exec "运行 Python 代码计算斐波那契数列"
+<p>openclaw exec "执行 Node.js 脚本处理 JSON 数据" </code></pre></p>
+
+<hr>
+
+<h3>6. <strong>database</strong> - 数据库操作</h3>
+<p><strong>功能</strong>: 连接和操作数据库</p>
+
+<p><strong>使用场景</strong>:</p>
+<ul>
+<li>数据分析</li>
+<li>报表生成</li>
+<li>自动化备份</li>
+<li>数据迁移</li>
+<p></ul></p>
+
+<p><strong>安装</strong>:</p>
+<pre><code>openclaw skills install database
+<p></code></pre></p>
+
+<p><strong>示例</strong>:</p>
+<pre><code>openclaw exec "查询数据库中的最新 10 条记录"
+<p>openclaw exec "生成用户统计报告" </code></pre></p>
+
+<hr>
+
+<h3>7. <strong>image</strong> - 图像处理</h3>
+<p><strong>功能</strong>: 图像生成、编辑、分析</p>
+
+<p><strong>使用场景</strong>:</p>
+<ul>
+<li>批量图像处理</li>
+<li>图像生成</li>
+<li>OCR 文字识别</li>
+<li>图像优化</li>
+<p></ul></p>
+
+<p><strong>安装</strong>:</p>
+<pre><code>openclaw skills install image
+<p></code></pre></p>
+
+<p><strong>示例</strong>:</p>
+<pre><code>openclaw exec "压缩当前目录的所有图片到 50% 质量"
+<p>openclaw exec "识别这张图片中的文字" &lt; image.png </code></pre></p>
+
+<hr>
+
+<h3>8. <strong>video</strong> - 视频处理</h3>
+<p><strong>功能</strong>: 视频编辑、转码、分析</p>
+
+<p><strong>使用场景</strong>:</p>
+<ul>
+<li>批量转码</li>
+<li>视频剪辑</li>
+<li>提取音频</li>
+<li>生成字幕</li>
+<p></ul></p>
+
+<p><strong>安装</strong>:</p>
+<pre><code>openclaw skills install video
+<p></code></pre></p>
+
+<p><strong>示例</strong>:</p>
+<pre><code>openclaw exec "将 video.mp4 转换为 720p 版本"
+<p>openclaw exec "提取视频中的音频保存为 MP3" </code></pre></p>
+
+<hr>
+
+<h2>🎯 专业领域技能</h2>
+
+<h3>9. <strong>crypto</strong> - 加密货币</h3>
+<p><strong>功能</strong>: 获取价格、分析市场、执行交易</p>
+
+<p><strong>使用场景</strong>:</p>
+<ul>
+<li>价格监控</li>
+<li>投资组合管理</li>
+<li>自动化交易</li>
+<li>市场分析</li>
+<p></ul></p>
+
+<p><strong>安装</strong>:</p>
+<pre><code>openclaw skills install crypto
+<p></code></pre></p>
+
+<p><strong>示例</strong>:</p>
+<pre><code>openclaw exec "获取 BTC 当前价格和 24h 变化"
+<p>openclaw exec "分析我的投资组合表现" </code></pre></p>
+
+<hr>
+
+<h3>10. <strong>git</strong> - Git 增强</h3>
+<p><strong>功能</strong>: 高级 Git 操作和自动化</p>
+
+<p><strong>使用场景</strong>:</p>
+<ul>
+<li>自动生成提交信息</li>
+<li>批量分支管理</li>
+<li>代码审查辅助</li>
+<li>版本分析</li>
+<p></ul></p>
+
+<p><strong>安装</strong>:</p>
+<pre><code>openclaw skills install git
+<p></code></pre></p>
+
+<p><strong>示例</strong>:</p>
+<pre><code>openclaw exec "基于当前更改生成提交信息"
+<p>openclaw exec "分析这个仓库的贡献统计" </code></pre></p>
+
+<hr>
+
+<h3>11. <strong>api</strong> - API 集成</h3>
+<p><strong>功能</strong>: 快速集成各种第三方 API</p>
+
+<p><strong>使用场景</strong>:</p>
+<ul>
+<li>数据同步</li>
+<li>服务集成</li>
+<li>自动化工作流</li>
+<li>数据采集</li>
+<p></ul></p>
+
+<p><strong>安装</strong>:</p>
+<pre><code>openclaw skills install api
+<p></code></pre></p>
+
+<p><strong>示例</strong>:</p>
+<pre><code>openclaw exec "调用天气 API 获取明天北京的天气"
+<p>openclaw exec "同步数据到 Notion" </code></pre></p>
+
+<hr>
+
+<h3>12. <strong>pdf</strong> - PDF 处理</h3>
+<p><strong>功能</strong>: PDF 生成、编辑、转换</p>
+
+<p><strong>使用场景</strong>:</p>
+<ul>
+<li>报告生成</li>
+<li>批量转换</li>
+<li>表单填写</li>
+<li>文档合并</li>
+<p></ul></p>
+
+<p><strong>安装</strong>:</p>
+<pre><code>openclaw skills install pdf
+<p></code></pre></p>
+
+<p><strong>示例</strong>:</p>
+<pre><code>openclaw exec "将 Markdown 转换为 PDF"
+<p>openclaw exec "合并多个 PDF 文件" </code></pre></p>
+
+<hr>
+
+<h2>🔧 开发工具技能</h2>
+
+<h3>13. <strong>docker</strong> - Docker 管理</h3>
+<p><strong>功能</strong>: 容器化操作和管理</p>
+
+<p><strong>示例</strong>:</p>
+<pre><code>openclaw exec "构建当前目录的 Docker 镜像"
+<p>openclaw exec "列出所有运行中的容器" </code></pre></p>
+
+<h3>14. <strong>aws</strong> - AWS 云服务</h3>
+<p><strong>功能</strong>: 操作 AWS 资源</p>
+
+<p><strong>示例</strong>:</p>
+<pre><code>openclaw exec "启动一个 EC2 实例"
+<p>openclaw exec "列出所有 S3 存储桶" </code></pre></p>
+
+<h3>15. <strong>sql</strong> - SQL 查询</h3>
+<p><strong>功能</strong>: 自然语言转 SQL</p>
+
+<p><strong>示例</strong>:</p>
+<pre><code>openclaw exec "生成查询最近 7 天活跃用户的 SQL"
+<p>openclaw exec "优化这段 SQL 查询" </code></pre></p>
+
+<hr>
+
+<h2>🎨 创意技能</h2>
+
+<h3>16. <strong>chart</strong> - 图表生成</h3>
+<p><strong>功能</strong>: 自动生成数据可视化图表</p>
+
+<p><strong>示例</strong>:</p>
+<pre><code>openclaw exec "基于这些数据生成柱状图"
+<p>openclaw exec "创建一个展示销售趋势的折线图" </code></pre></p>
+
+<h3>17. <strong>map</strong> - 地图服务</h3>
+<p><strong>功能</strong>: 地理信息处理和可视化</p>
+
+<p><strong>示例</strong>:</p>
+<pre><code>openclaw exec "显示这些地址在地图上的位置"
+<p>openclaw exec "计算两个城市之间的距离" </code></pre></p>
+
+<h3>18. <strong>translate</strong> - 翻译增强</h3>
+<p><strong>功能</strong>: 高质量多语言翻译</p>
+
+<p><strong>示例</strong>:</p>
+<pre><code>openclaw exec "将这份文档翻译成日语"
+<p>openclaw exec "翻译并保持 Markdown 格式" </code></pre></p>
+
+<hr>
+
+<h2>📊 技能对比表</h2>
+
+<table>
+<tr><td>技能</td><td>难度</td><td>使用频率</td><td>推荐度</td></tr>
+<tr><td>web-search</td><td>⭐</td><td>🔥🔥🔥🔥🔥</td><td>⭐⭐⭐⭐⭐</td></tr>
+<tr><td>browser</td><td>⭐⭐</td><td>🔥🔥🔥🔥</td><td>⭐⭐⭐⭐⭐</td></tr>
+<tr><td>file-system</td><td>⭐</td><td>🔥🔥🔥🔥</td><td>⭐⭐⭐⭐⭐</td></tr>
+<tr><td>messaging</td><td>⭐⭐</td><td>🔥🔥🔥</td><td>⭐⭐⭐⭐</td></tr>
+<tr><td>code-exec</td><td>⭐⭐</td><td>🔥🔥🔥🔥</td><td>⭐⭐⭐⭐</td></tr>
+<tr><td>crypto</td><td>⭐⭐⭐</td><td>🔥🔥🔥</td><td>⭐⭐⭐⭐</td></tr>
+<tr><td>git</td><td>⭐</td><td>🔥🔥🔥🔥</td><td>⭐⭐⭐⭐⭐</td></tr>
+<tr><td>image</td><td>⭐⭐</td><td>🔥🔥🔥</td><td>⭐⭐⭐⭐</td></tr>
+<tr><td>pdf</td><td>⭐</td><td>🔥🔥</td><td>⭐⭐⭐</td></tr>
+<tr><td>api</td><td>⭐⭐</td><td>🔥🔥🔥🔥</td><td>⭐⭐⭐⭐</td></tr>
+<p></table></p>
+
+<hr>
+
+<h2>🚀 快速开始</h2>
+
+<h3>安装多个技能</h3>
+<pre><code># 安装所有推荐技能
+<p>openclaw skills install web-search browser file-system messaging git </code></pre></p>
+
+<h3>查看已安装技能</h3>
+<pre><code>openclaw skills list
+<p></code></pre></p>
+
+<h3>更新技能</h3>
+<pre><code>openclaw skills update web-search
+<p></code></pre></p>
+
+<h3>卸载技能</h3>
+<pre><code>openclaw skills uninstall old-skill
+<p></code></pre></p>
+
+<hr>
+
+<h2>🎓 技能开发</h2>
+
+<p>想要开发自己的技能？</p>
+
+<h3>技能结构</h3>
+<pre><code>my-skill/
+<p>├── skill.yaml      # 技能配置 ├── index.js        # 主入口 └── README.md       # 说明文档 </code></pre></p>
+
+<h3>基本模板</h3>
+<pre><code>// index.js
+<p>module.exports = {   name: 'my-skill',   version: '1.0.0',</p>
+
+<p>  async execute(context, params) {     // 实现技能逻辑     return result;   } }; </code></pre></p>
+
+<h3>发布技能</h3>
+<pre><code>openclaw skills publish ./my-skill
+<p></code></pre></p>
+
+<hr>
+
+<p><strong>更多技能请访问 OpenClaw 技能市场!</strong></p>
+
     </article>
 </body>
 </html>

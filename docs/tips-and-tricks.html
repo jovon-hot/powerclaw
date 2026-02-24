@@ -8,24 +8,30 @@
         :root { --bg: #0a0a0a; --bg-card: #161616; --text: #fff; --text-sec: #999; --border: #2a2a2a; }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; max-width: 900px; margin: 0 auto; padding: 40px 20px; }
-        h1 { font-size: 2rem; margin-bottom: 30px; border-bottom: 1px solid var(--border); padding-bottom: 15px; }
-        h2 { font-size: 1.5rem; margin: 40px 0 20px; color: var(--text); }
+        h1 { font-size: 2rem; margin-bottom: 30px; border-bottom: 1px solid var(--border); padding-bottom: 15px; color: var(--text); }
+        h2 { font-size: 1.5rem; margin: 40px 0 20px; color: var(--text); border-bottom: 1px solid var(--border); padding-bottom: 10px; }
         h3 { font-size: 1.2rem; margin: 30px 0 15px; color: var(--text-sec); }
+        h4 { font-size: 1.1rem; margin: 25px 0 12px; color: var(--text-sec); }
         p { margin-bottom: 15px; color: var(--text-sec); }
         ul, ol { margin: 15px 0; padding-left: 30px; color: var(--text-sec); }
         li { margin: 8px 0; }
         a { color: #4a9eff; text-decoration: none; }
         a:hover { text-decoration: underline; }
-        code { background: var(--bg-card); padding: 2px 8px; border-radius: 4px; font-family: monospace; font-size: 0.9em; }
-        pre { background: var(--bg-card); padding: 20px; border-radius: 8px; overflow-x: auto; margin: 20px 0; }
-        pre code { background: none; padding: 0; }
-        blockquote { border-left: 3px solid var(--text-sec); padding-left: 20px; margin: 20px 0; color: var(--text-sec); }
+        code { background: var(--bg-card); padding: 2px 8px; border-radius: 4px; font-family: 'Monaco', 'Menlo', monospace; font-size: 0.9em; color: #e6e6e6; }
+        pre { background: var(--bg-card); padding: 20px; border-radius: 8px; overflow-x: auto; margin: 20px 0; border: 1px solid var(--border); }
+        pre code { background: none; padding: 0; color: #e6e6e6; }
+        blockquote { border-left: 3px solid #4a9eff; padding-left: 20px; margin: 20px 0; color: var(--text-sec); font-style: italic; }
         table { width: 100%; border-collapse: collapse; margin: 20px 0; }
         th, td { padding: 12px; text-align: left; border-bottom: 1px solid var(--border); }
-        th { color: var(--text); }
+        th { color: var(--text); background: var(--bg-card); font-weight: 600; }
+        tr:hover { background: rgba(255,255,255,0.02); }
+        hr { border: none; border-top: 1px solid var(--border); margin: 30px 0; }
         .nav { margin-bottom: 40px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
-        .nav a { color: var(--text-sec); margin-right: 20px; }
+        .nav a { color: var(--text-sec); margin-right: 20px; text-decoration: none; }
         .nav a:hover { color: var(--text); }
+        .meta { color: var(--text-sec); font-size: 0.9em; margin-bottom: 30px; }
+        strong { color: var(--text); }
+        em { font-style: italic; }
     </style>
 </head>
 <body>
@@ -34,278 +40,241 @@
         <a href="/powerclaw/docs/">文档索引</a>
     </div>
     <article>
-u003ch1u003eOpenClaw 高级技巧大全
+<h1>OpenClaw 高级技巧大全</h1>
 
-u003ch2u003e🔥 实用技巧
+<h2>🔥 实用技巧</h2>
 
-u003ch3u003e技巧 1: 批量文件处理
-u003cpreu003eu003ccodeu003ebash
-u003ch1u003e批量重命名
-openclaw exec "批量将当前目录的 .txt 文件重命名为 .md"
+<h3>技巧 1: 批量文件处理</h3>
+<pre><code># 批量重命名
+<p>openclaw exec "批量将当前目录的 .txt 文件重命名为 .md"</p>
 
-u003ch1u003e批量转换格式
-openclaw exec "将所有 .jpg 图片压缩到 50% 质量"
-u003cpreu003eu003ccodeu003e
+<h1>批量转换格式</h1>
+<p>openclaw exec "将所有 .jpg 图片压缩到 50% 质量" </code></pre></p>
 
-u003ch3u003e技巧 2: 智能搜索与总结
-u003cpreu003eu003ccodeu003ebash
-u003ch1u003e搜索并总结
-openclaw exec "搜索 2025 年 AI 发展趋势，并总结成 5 个要点"
+<h3>技巧 2: 智能搜索与总结</h3>
+<pre><code># 搜索并总结
+<p>openclaw exec "搜索 2025 年 AI 发展趋势，并总结成 5 个要点"</p>
 
-u003ch1u003e多源对比
-openclaw exec "对比 Gemini、Claude、GPT-4 的特点，制作对比表格"
-u003cpreu003eu003ccodeu003e
+<h1>多源对比</h1>
+<p>openclaw exec "对比 Gemini、Claude、GPT-4 的特点，制作对比表格" </code></pre></p>
 
-u003ch3u003e技巧 3: 自动化报告生成
-u003cpreu003eu003ccodeu003ebash
-u003ch1u003e每日报告
-openclaw exec "分析今天的科技新闻，生成一份简洁的日报"
+<h3>技巧 3: 自动化报告生成</h3>
+<pre><code># 每日报告
+<p>openclaw exec "分析今天的科技新闻，生成一份简洁的日报"</p>
 
-u003ch1u003e周报生成
-openclaw exec "根据本周的工作日志，生成周报"
-u003cpreu003eu003ccodeu003e
+<h1>周报生成</h1>
+<p>openclaw exec "根据本周的工作日志，生成周报" </code></pre></p>
 
-u003ch3u003e技巧 4: 代码辅助
-u003cpreu003eu003ccodeu003ebash
-u003ch1u003e代码审查
-openclaw exec "审查这段代码的潜在问题" < script.js
+<h3>技巧 4: 代码辅助</h3>
+<pre><code># 代码审查
+<p>openclaw exec "审查这段代码的潜在问题" &lt; script.js</p>
 
-u003ch1u003e自动生成测试
-openclaw exec "为以下函数生成单元测试" < function.js
+<h1>自动生成测试</h1>
+<p>openclaw exec "为以下函数生成单元测试" &lt; function.js</p>
 
-u003ch1u003e代码解释
-openclaw exec "解释这段代码的工作原理" < complex.py
-u003cpreu003eu003ccodeu003e
+<h1>代码解释</h1>
+<p>openclaw exec "解释这段代码的工作原理" &lt; complex.py </code></pre></p>
 
-u003ch3u003e技巧 5: 数据处理
-u003cpreu003eu003ccodeu003ebash
-u003ch1u003eCSV 分析
-openclaw exec "分析这个 CSV 文件的数据趋势" < data.csv
+<h3>技巧 5: 数据处理</h3>
+<pre><code># CSV 分析
+<p>openclaw exec "分析这个 CSV 文件的数据趋势" &lt; data.csv</p>
 
-u003ch1u003eJSON 处理
-openclaw exec "将 JSON 转换为 Markdown 表格" < data.json
-u003cpreu003eu003ccodeu003e
+<h1>JSON 处理</h1>
+<p>openclaw exec "将 JSON 转换为 Markdown 表格" &lt; data.json </code></pre></p>
 
----
+<hr>
 
-u003ch2u003e🎯 实战应用
+<h2>🎯 实战应用</h2>
 
-u003ch3u003e应用 1: 个人知识库管理
+<h3>应用 1: 个人知识库管理</h3>
 
-u003cstrongu003e场景u003c/strongu003e: 自动整理和分类笔记
+<p><strong>场景</strong>: 自动整理和分类笔记</p>
 
-u003cpreu003eu003ccodeu003ebash
-u003ch1u003e自动标签
-openclaw exec "读取这些笔记，自动添加合适的标签"
+<pre><code># 自动标签
+<p>openclaw exec "读取这些笔记，自动添加合适的标签"</p>
 
-u003ch1u003e知识关联
-openclaw exec "找出这些笔记之间的关联，建立知识图谱"
-u003cpreu003eu003ccodeu003e
+<h1>知识关联</h1>
+<p>openclaw exec "找出这些笔记之间的关联，建立知识图谱" </code></pre></p>
 
-u003ch3u003e应用 2: 社交媒体运营
+<h3>应用 2: 社交媒体运营</h3>
 
-u003cstrongu003e场景u003c/strongu003e: 自动化内容发布
+<p><strong>场景</strong>: 自动化内容发布</p>
 
-u003cpreu003eu003ccodeu003ebash
-u003ch1u003e内容生成
-openclaw exec "根据这个主题生成 5 条 Twitter 推文"
+<pre><code># 内容生成
+<p>openclaw exec "根据这个主题生成 5 条 Twitter 推文"</p>
 
-u003ch1u003e定时发布
-openclaw exec "创建一个每天早上 9 点发布科技资讯的工作流"
-u003cpreu003eu003ccodeu003e
+<h1>定时发布</h1>
+<p>openclaw exec "创建一个每天早上 9 点发布科技资讯的工作流" </code></pre></p>
 
-u003ch3u003e应用 3: 投资研究
+<h3>应用 3: 投资研究</h3>
 
-u003cstrongu003e场景u003c/strongu003e: 自动化市场分析
+<p><strong>场景</strong>: 自动化市场分析</p>
 
-u003cpreu003eu003ccodeu003ebash
-u003ch1u003e市场监控
-openclaw exec "监控 ETH 价格，如果突破 $3000 就通知我"
+<pre><code># 市场监控
+<p>openclaw exec "监控 ETH 价格，如果突破 $3000 就通知我"</p>
 
-u003ch1u003e报告生成
-openclaw exec "分析本周的 DeFi 收益机会，生成投资报告"
-u003cpreu003eu003ccodeu003e
+<h1>报告生成</h1>
+<p>openclaw exec "分析本周的 DeFi 收益机会，生成投资报告" </code></pre></p>
 
-u003ch3u003e应用 4: 学习助手
+<h3>应用 4: 学习助手</h3>
 
-u003cstrongu003e场景u003c/strongu003e: 个性化学习规划
+<p><strong>场景</strong>: 个性化学习规划</p>
 
-u003cpreu003eu003ccodeu003ebash
-u003ch1u003e学习计划
-openclaw exec "根据我的目标，制定一个学习 Rust 的 30 天计划"
+<pre><code># 学习计划
+<p>openclaw exec "根据我的目标，制定一个学习 Rust 的 30 天计划"</p>
 
-u003ch1u003e知识测验
-openclaw exec "基于这些内容生成 10 道测试题" < notes.md
-u003cpreu003eu003ccodeu003e
+<h1>知识测验</h1>
+<p>openclaw exec "基于这些内容生成 10 道测试题" &lt; notes.md </code></pre></p>
 
-u003ch3u003e应用 5: 文档自动化
-
-u003cstrongu003e场景u003c/strongu003e: 自动维护和更新文档
+<h3>应用 5: 文档自动化</h3>
 
-u003cpreu003eu003ccodeu003ebash
-u003ch1u003e文档翻译
-openclaw exec "将这份文档翻译成英文" < chinese-doc.md
-
-u003ch1u003e格式转换
-openclaw exec "将 Markdown 转换为 PDF 格式"
-u003cpreu003eu003ccodeu003e
-
----
-
-u003ch2u003e🎮 创意玩法
+<p><strong>场景</strong>: 自动维护和更新文档</p>
 
-u003ch3u003e玩法 1: AI 播客生成
-u003cpreu003eu003ccodeu003ebash
-u003ch1u003e生成播客脚本
-openclaw exec "基于今天的科技新闻，生成一个 5 分钟的播客脚本"
+<pre><code># 文档翻译
+<p>openclaw exec "将这份文档翻译成英文" &lt; chinese-doc.md</p>
 
-u003ch1u003e转换为音频（需要 TTS 工具）
-openclaw exec "将这段文字转换为适合播客的语调"
-u003cpreu003eu003ccodeu003e
+<h1>格式转换</h1>
+<p>openclaw exec "将 Markdown 转换为 PDF 格式" </code></pre></p>
 
-u003ch3u003e玩法 2: 自动化客服
-u003cpreu003eu003ccodeu003ebash
-u003ch1u003e邮件回复
-openclaw exec "根据这封邮件的内容，生成专业的回复"
+<hr>
 
-u003ch1u003eFAQ 生成
-openclaw exec "基于这些文档，生成常见问题和答案"
-u003cpreu003eu003ccodeu003e
+<h2>🎮 创意玩法</h2>
 
-u003ch3u003e玩法 3: 创意写作助手
-u003cpreu003eu003ccodeu003ebash
-u003ch1u003e故事生成
-openclaw exec "写一个关于 AI 觉醒的短故事"
+<h3>玩法 1: AI 播客生成</h3>
+<pre><code># 生成播客脚本
+<p>openclaw exec "基于今天的科技新闻，生成一个 5 分钟的播客脚本"</p>
 
-u003ch1u003e角色设计
-openclaw exec "为我的小说设计一个反派角色的背景故事"
-u003cpreu003eu003ccodeu003e
+<h1>转换为音频（需要 TTS 工具）</h1>
+<p>openclaw exec "将这段文字转换为适合播客的语调" </code></pre></p>
 
-u003ch3u003e玩法 4: 数据分析助手
-u003cpreu003eu003ccodeu003ebash
-u003ch1u003e可视化描述
-openclaw exec "描述这个数据集的关键洞察" < data.csv
+<h3>玩法 2: 自动化客服</h3>
+<pre><code># 邮件回复
+<p>openclaw exec "根据这封邮件的内容，生成专业的回复"</p>
 
-u003ch1u003e报告自动化
-openclaw exec "基于这些数据生成一份商业分析报告"
-u003cpreu003eu003ccodeu003e
+<h1>FAQ 生成</h1>
+<p>openclaw exec "基于这些文档，生成常见问题和答案" </code></pre></p>
 
-u003ch3u003e玩法 5: 自动化测试
-u003cpreu003eu003ccodeu003ebash
-u003ch1u003e生成测试用例
-openclaw exec "为以下功能生成边界测试用例"
+<h3>玩法 3: 创意写作助手</h3>
+<pre><code># 故事生成
+<p>openclaw exec "写一个关于 AI 觉醒的短故事"</p>
 
-u003ch1u003e Bug 报告
-openclaw exec "分析这些日志，找出潜在的 Bug 模式"
-u003cpreu003eu003ccodeu003e
+<h1>角色设计</h1>
+<p>openclaw exec "为我的小说设计一个反派角色的背景故事" </code></pre></p>
 
----
+<h3>玩法 4: 数据分析助手</h3>
+<pre><code># 可视化描述
+<p>openclaw exec "描述这个数据集的关键洞察" &lt; data.csv</p>
 
-u003ch2u003e💡 效率提升技巧
+<h1>报告自动化</h1>
+<p>openclaw exec "基于这些数据生成一份商业分析报告" </code></pre></p>
 
-u003ch3u003e技巧 1: 别名设置
-u003cpreu003eu003ccodeu003ebash
-u003ch1u003e添加到 .bashrc 或 .zshrc
-alias ask='openclaw exec'
-alias ai='openclaw exec'
-alias help='openclaw exec'
+<h3>玩法 5: 自动化测试</h3>
+<pre><code># 生成测试用例
+<p>openclaw exec "为以下功能生成边界测试用例"</p>
 
-u003ch1u003e使用
-ask "如何优化这段代码？"
-u003cpreu003eu003ccodeu003e
+<h1> Bug 报告</h1>
+<p>openclaw exec "分析这些日志，找出潜在的 Bug 模式" </code></pre></p>
 
-u003ch3u003e技巧 2: 管道操作
-u003cpreu003eu003ccodeu003ebash
-u003ch1u003e结合其他命令
-cat error.log | openclaw exec "分析这些错误日志"
+<hr>
 
-u003ch1u003e批量处理
-ls *.md | openclaw exec "总结这些文件的内容"
-u003cpreu003eu003ccodeu003e
+<h2>💡 效率提升技巧</h2>
 
-u003ch3u003e技巧 3: 模板化
-u003cpreu003eu003ccodeu003ebash
-u003ch1u003e创建常用模板
-openclaw exec "创建一个每日待办事项模板"
+<h3>技巧 1: 别名设置</h3>
+<pre><code># 添加到 .bashrc 或 .zshrc
+<p>alias ask='openclaw exec' alias ai='openclaw exec' alias help='openclaw exec'</p>
 
-u003ch1u003e复用模板
-openclaw exec "使用日报模板，填充今天的内容"
-u003cpreu003eu003ccodeu003e
+<h1>使用</h1>
+<p>ask "如何优化这段代码？" </code></pre></p>
 
-u003ch3u003e技巧 4: 自动化工作流
-u003cpreu003eu003ccodeu003ebash
-u003ch1u003eGit 提交信息
-openclaw exec "根据这些代码变更生成提交信息" < git-diff.txt
+<h3>技巧 2: 管道操作</h3>
+<pre><code># 结合其他命令
+<table>
+<tr><td>cat error.log</td><td>openclaw exec "分析这些错误日志"</td></tr>
+<p></table></p>
 
-u003ch1u003ePR 描述
-openclaw exec "生成这个 PR 的描述"
-u003cpreu003eu003ccodeu003e
+<h1>批量处理</h1>
+<table>
+<tr><td>ls *.md</td><td>openclaw exec "总结这些文件的内容"</td></tr>
+<p></table> </code></pre></p>
 
-u003ch3u003e技巧 5: 集成其他工具
-u003cpreu003eu003ccodeu003ebash
-u003ch1u003e与 Slack 集成
-openclaw exec "总结今天的进展，发送到 Slack"
+<h3>技巧 3: 模板化</h3>
+<pre><code># 创建常用模板
+<p>openclaw exec "创建一个每日待办事项模板"</p>
 
-u003ch1u003e与邮件集成
-openclaw exec "撰写周报邮件，发送给团队"
-u003cpreu003eu003ccodeu003e
+<h1>复用模板</h1>
+<p>openclaw exec "使用日报模板，填充今天的内容" </code></pre></p>
 
----
+<h3>技巧 4: 自动化工作流</h3>
+<pre><code># Git 提交信息
+<p>openclaw exec "根据这些代码变更生成提交信息" &lt; git-diff.txt</p>
 
-u003ch2u003e🔧 故障排除
+<h1>PR 描述</h1>
+<p>openclaw exec "生成这个 PR 的描述" </code></pre></p>
 
-u003ch3u003e问题 1: 响应慢
-u003cstrongu003e解决u003c/strongu003e: 使用更简单的提示，明确指令
+<h3>技巧 5: 集成其他工具</h3>
+<pre><code># 与 Slack 集成
+<p>openclaw exec "总结今天的进展，发送到 Slack"</p>
 
-u003cpreu003eu003ccodeu003ebash
-u003ch1u003e不好的示例
-openclaw exec "帮我分析一下"
+<h1>与邮件集成</h1>
+<p>openclaw exec "撰写周报邮件，发送给团队" </code></pre></p>
 
-u003ch1u003e好的示例
-openclaw exec "分析这个 CSV 的前 10 行数据，找出异常值"
-u003cpreu003eu003ccodeu003e
+<hr>
 
-u003ch3u003e问题 2: 结果不准确
-u003cstrongu003e解决u003c/strongu003e: 提供更多上下文
+<h2>🔧 故障排除</h2>
 
-u003cpreu003eu003ccodeu003ebash
-u003ch1u003e添加背景信息
-openclaw exec "基于我们之前的讨论，继续优化这个方案..."
-u003cpreu003eu003ccodeu003e
+<h3>问题 1: 响应慢</h3>
+<p><strong>解决</strong>: 使用更简单的提示，明确指令</p>
 
-u003ch3u003e问题 3: 格式化问题
-u003cstrongu003e解决u003c/strongu003e: 明确指定输出格式
+<pre><code># 不好的示例
+<p>openclaw exec "帮我分析一下"</p>
 
-u003cpreu003eu003ccodeu003ebash
-openclaw exec "用 Markdown 表格格式输出结果"
-openclaw exec "用 JSON 格式返回数据"
-u003cpreu003eu003ccodeu003e
+<h1>好的示例</h1>
+<p>openclaw exec "分析这个 CSV 的前 10 行数据，找出异常值" </code></pre></p>
 
----
+<h3>问题 2: 结果不准确</h3>
+<p><strong>解决</strong>: 提供更多上下文</p>
 
-u003ch2u003e📚 学习资源
+<pre><code># 添加背景信息
+<p>openclaw exec "基于我们之前的讨论，继续优化这个方案..." </code></pre></p>
 
-u003ch3u003e官方资源
-u003cliu003eOpenClaw 文档: https://docs.openclaw.ai
-u003cliu003eGitHub 仓库: https://github.com/openclaw/openclaw
-u003cliu003e社区论坛: https://discord.com/invite/openclaw
+<h3>问题 3: 格式化问题</h3>
+<p><strong>解决</strong>: 明确指定输出格式</p>
 
-u003ch3u003e推荐技能 (Skills)
-1. u003cstrongu003eweb-searchu003c/strongu003e - 网络搜索增强
-2. u003cstrongu003ebrowseru003c/strongu003e - 浏览器自动化
-3. u003cstrongu003efile-systemu003c/strongu003e - 文件操作
-4. u003cstrongu003emessagingu003c/strongu003e - 消息发送
-5. u003cstrongu003ecode-execu003c/strongu003e - 代码执行
+<pre><code>openclaw exec "用 Markdown 表格格式输出结果"
+<p>openclaw exec "用 JSON 格式返回数据" </code></pre></p>
 
-u003ch3u003e进阶学习
-u003cliu003eMCP 服务器开发
-u003cliu003e自定义技能编写
-u003cliu003e工作流编排
-u003cliu003e自动化最佳实践
+<hr>
 
----
+<h2>📚 学习资源</h2>
 
-u003cstrongu003e持续更新中... 更多技巧和玩法请访问 PowerClaw 网站!u003c/strongu003e
+<h3>官方资源</h3>
+<ul>
+<li>OpenClaw 文档: https://docs.openclaw.ai</li>
+<li>GitHub 仓库: https://github.com/openclaw/openclaw</li>
+<li>社区论坛: https://discord.com/invite/openclaw</li>
+<p></ul></p>
+
+<h3>推荐技能 (Skills)</h3>
+<ol>
+<li><strong>web-search</strong> - 网络搜索增强</li>
+<li><strong>browser</strong> - 浏览器自动化</li>
+<li><strong>file-system</strong> - 文件操作</li>
+<li><strong>messaging</strong> - 消息发送</li>
+<li><strong>code-exec</strong> - 代码执行</li>
+<p></ol></p>
+
+<h3>进阶学习</h3>
+<ul>
+<li>MCP 服务器开发</li>
+<li>自定义技能编写</li>
+<li>工作流编排</li>
+<li>自动化最佳实践</li>
+<p></ul></p>
+
+<hr>
+
+<p><strong>持续更新中... 更多技巧和玩法请访问 PowerClaw 网站!</strong></p>
+
     </article>
 </body>
 </html>

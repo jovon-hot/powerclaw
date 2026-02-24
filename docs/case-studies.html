@@ -8,24 +8,30 @@
         :root { --bg: #0a0a0a; --bg-card: #161616; --text: #fff; --text-sec: #999; --border: #2a2a2a; }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; max-width: 900px; margin: 0 auto; padding: 40px 20px; }
-        h1 { font-size: 2rem; margin-bottom: 30px; border-bottom: 1px solid var(--border); padding-bottom: 15px; }
-        h2 { font-size: 1.5rem; margin: 40px 0 20px; color: var(--text); }
+        h1 { font-size: 2rem; margin-bottom: 30px; border-bottom: 1px solid var(--border); padding-bottom: 15px; color: var(--text); }
+        h2 { font-size: 1.5rem; margin: 40px 0 20px; color: var(--text); border-bottom: 1px solid var(--border); padding-bottom: 10px; }
         h3 { font-size: 1.2rem; margin: 30px 0 15px; color: var(--text-sec); }
+        h4 { font-size: 1.1rem; margin: 25px 0 12px; color: var(--text-sec); }
         p { margin-bottom: 15px; color: var(--text-sec); }
         ul, ol { margin: 15px 0; padding-left: 30px; color: var(--text-sec); }
         li { margin: 8px 0; }
         a { color: #4a9eff; text-decoration: none; }
         a:hover { text-decoration: underline; }
-        code { background: var(--bg-card); padding: 2px 8px; border-radius: 4px; font-family: monospace; font-size: 0.9em; }
-        pre { background: var(--bg-card); padding: 20px; border-radius: 8px; overflow-x: auto; margin: 20px 0; }
-        pre code { background: none; padding: 0; }
-        blockquote { border-left: 3px solid var(--text-sec); padding-left: 20px; margin: 20px 0; color: var(--text-sec); }
+        code { background: var(--bg-card); padding: 2px 8px; border-radius: 4px; font-family: 'Monaco', 'Menlo', monospace; font-size: 0.9em; color: #e6e6e6; }
+        pre { background: var(--bg-card); padding: 20px; border-radius: 8px; overflow-x: auto; margin: 20px 0; border: 1px solid var(--border); }
+        pre code { background: none; padding: 0; color: #e6e6e6; }
+        blockquote { border-left: 3px solid #4a9eff; padding-left: 20px; margin: 20px 0; color: var(--text-sec); font-style: italic; }
         table { width: 100%; border-collapse: collapse; margin: 20px 0; }
         th, td { padding: 12px; text-align: left; border-bottom: 1px solid var(--border); }
-        th { color: var(--text); }
+        th { color: var(--text); background: var(--bg-card); font-weight: 600; }
+        tr:hover { background: rgba(255,255,255,0.02); }
+        hr { border: none; border-top: 1px solid var(--border); margin: 30px 0; }
         .nav { margin-bottom: 40px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
-        .nav a { color: var(--text-sec); margin-right: 20px; }
+        .nav a { color: var(--text-sec); margin-right: 20px; text-decoration: none; }
         .nav a:hover { color: var(--text); }
+        .meta { color: var(--text-sec); font-size: 0.9em; margin-bottom: 30px; }
+        strong { color: var(--text); }
+        em { font-style: italic; }
     </style>
 </head>
 <body>
@@ -34,422 +40,246 @@
         <a href="/powerclaw/docs/">文档索引</a>
     </div>
     <article>
-u003ch1u003eOpenClaw 实战案例集
+<h1>OpenClaw 实战案例集</h1>
 
-真实场景下的 OpenClaw 应用案例，可直接复制使用。
+<p>真实场景下的 OpenClaw 应用案例，可直接复制使用。</p>
 
----
+<hr>
 
-u003ch2u003e💼 案例 1: 自动化日报系统
+<h2>💼 案例 1: 自动化日报系统</h2>
 
-u003cstrongu003e场景u003c/strongu003e: 每天早上自动收集信息，生成并发送日报
+<p><strong>场景</strong>: 每天早上自动收集信息，生成并发送日报</p>
 
-u003ch3u003e工作流配置
-u003cpreu003eu003ccodeu003eyaml
-u003ch1u003eworkflows/daily-report.yaml
-name: Daily Report
-trigger: cron(0 9 u003cemu003e u003c/emu003e *)  # 每天 9:00
+<h3>工作流配置</h3>
+<pre><code># workflows/daily-report.yaml
+<p>name: Daily Report trigger: cron(0 9 <em> </em> <em>)  # 每天 9:00</p>
 
-steps:
-  1-search-news:
-    skill: web-search
-    params:
-      query: "科技新闻 AI 人工智能 {{today}}"
-      count: 10
-  
-  2-check-emails:
-    skill: email
-    action: fetch
-    params:
-      folder: inbox
-      limit: 20
-  
-  3-analyze-calendar:
-    skill: calendar
-    action: list
-    params:
-      date: today
-  
-  4-generate-report:
-    action: llm
-    prompt: |
-      基于以下信息生成日报：
-      
-      ## 新闻动态
-      {{steps.1-search-news.results}}
-      
-      ## 邮件摘要
-      {{steps.2-check-emails.summary}}
-      
-      ## 今日日程
-      {{steps.3-analyze-calendar.events}}
-      
-      请生成一份简洁的日报，包含要点和待办事项。
-  
-  5-send-report:
-    skill: email
-    action: send
-    params:
-      to: "{{config.user.email}}"
-      subject: "日报 - {{today}}"
-      body: "{{steps.4-generate-report.output}}"
-u003cpreu003eu003ccodeu003e
+<p>steps:   1-search-news:     skill: web-search     params:       query: "科技新闻 AI 人工智能 {{today}}"       count: 10</p>
 
-u003ch3u003e部署命令
-u003cpreu003eu003ccodeu003ebash
-openclaw workflow add workflows/daily-report.yaml
-openclaw workflow enable daily-report
-u003cpreu003eu003ccodeu003e
+<p>  2-check-emails:     skill: email     action: fetch     params:       folder: inbox       limit: 20</p>
 
----
+<p>  3-analyze-calendar:     skill: calendar     action: list     params:       date: today</p>
 
-u003ch2u003e📊 案例 2: 智能投资组合监控
+<p>  4-generate-report:     action: llm     prompt: |       基于以下信息生成日报：</p>
 
-u003cstrongu003e场景u003c/strongu003e: 自动监控投资组合，生成分析报告并执行再平衡
+<p>      ## 新闻动态       {{steps.1-search-news.results}}</p>
 
-u003ch3u003e监控脚本
-u003cpreu003eu003ccodeu003ejavascript
-// portfolio-monitor.js
-const PortfolioMonitor = {
-  async checkPortfolio() {
-    // 获取当前持仓
-    const holdings = await this.getHoldings();
-    
-    // 分析配置
-    const analysis = await openclaw.exec(`
-      分析投资组合：
-      ${JSON.stringify(holdings)}
-      
-      检查：
-      1. 是否偏离目标配置
-      2. 风险敞口变化
-      3. 再平衡建议
-    `);
-    
-    // 如果需要再平衡
-    if (analysis.needsRebalance) {
-      await this.sendAlert(analysis);
-    }
-    
-    return analysis;
-  },
-  
-  async getHoldings() {
-    // 从各个平台获取持仓
-    const sources = [
-      { name: 'Aave', type: 'lending' },
-      { name: 'Uniswap', type: 'lp' },
-      { name: 'Wallet', type: 'token' }
-    ];
-    
-    // 聚合数据
-    return aggregatedData;
-  }
-};
-u003cpreu003eu003ccodeu003e
+<p>      ## 邮件摘要       {{steps.2-check-emails.summary}}</p>
 
-u003ch3u003e使用
-u003cpreu003eu003ccodeu003ebash
-u003ch1u003e添加到定时任务
-openclaw cron add "0 u003cemu003e/4 u003c/emu003e u003cemu003e u003c/emu003e" "node portfolio-monitor.js"
-u003cpreu003eu003ccodeu003e
+<p>      ## 今日日程       {{steps.3-analyze-calendar.events}}</p>
 
----
+<p>      请生成一份简洁的日报，包含要点和待办事项。</p>
 
-u003ch2u003e📝 案例 3: 内容创作流水线
+<p>  5-send-report:     skill: email     action: send     params:       to: "{{config.user.email}}"       subject: "日报 - {{today}}"       body: "{{steps.4-generate-report.output}}" </code></pre></p>
 
-u003cstrongu003e场景u003c/strongu003e: 从选题到发布的全自动内容创作
+<h3>部署命令</h3>
+<pre><code>openclaw workflow add workflows/daily-report.yaml
+<p>openclaw workflow enable daily-report </code></pre></p>
 
-u003ch3u003e流程
-u003cpreu003eu003ccodeu003ebash
-#!/bin/bash
-u003ch1u003econtent-pipeline.sh
+<hr>
 
-u003ch1u003e1. 选题研究
-echo "🔍 研究热门话题..."
-TOPIC=$(openclaw exec "基于今日热点，推荐一个技术博客选题")
+<h2>📊 案例 2: 智能投资组合监控</h2>
 
-u003ch1u003e2. 大纲生成
-echo "📝 生成文章大纲..."
-OUTLINE=$(openclaw exec "为'${TOPIC}'生成详细的文章大纲")
+<p><strong>场景</strong>: 自动监控投资组合，生成分析报告并执行再平衡</p>
 
-u003ch1u003e3. 内容创作
-echo "✍️ 创作内容..."
-CONTENT=$(openclaw exec "基于大纲创作完整文章：${OUTLINE}")
+<h3>监控脚本</h3>
+<pre><code>// portfolio-monitor.js
+<p>const PortfolioMonitor = {   async checkPortfolio() {     // 获取当前持仓     const holdings = await this.getHoldings();</p>
 
-u003ch1u003e4. SEO 优化
-echo "🔍 SEO 优化..."
-SEO_CONTENT=$(openclaw exec "优化以下内容的关键词和结构：${CONTENT}")
+<p>    // 分析配置     const analysis = await openclaw.exec(<code>       分析投资组合：       ${JSON.stringify(holdings)}</p>
 
-u003ch1u003e5. 生成配图
-echo "🎨 生成配图..."
-openclaw exec "为文章生成封面图片描述"
+<p>      检查：       1. 是否偏离目标配置       2. 风险敞口变化       3. 再平衡建议     </code>);</p>
 
-u003ch1u003e6. 发布到多平台
-echo "📤 发布内容..."
-openclaw skills use blog-publish --content "${SEO_CONTENT}" --platforms hashnode,devto
+<p>    // 如果需要再平衡     if (analysis.needsRebalance) {       await this.sendAlert(analysis);     }</p>
 
-u003ch1u003e7. 社交推广
-echo "📱 社交推广..."
-TWEET=$(openclaw exec "为文章生成一条 Twitter 推广文案：${TOPIC}")
-openclaw skills use twitter --post "${TWEET}"
+<p>    return analysis;   },</p>
 
-echo "✅ 内容创作流水线完成！"
-u003cpreu003eu003ccodeu003e
+<p>  async getHoldings() {     // 从各个平台获取持仓     const sources = [       { name: 'Aave', type: 'lending' },       { name: 'Uniswap', type: 'lp' },       { name: 'Wallet', type: 'token' }     ];</p>
 
----
+<p>    // 聚合数据     return aggregatedData;   } }; </code></pre></p>
 
-u003ch2u003e🐛 案例 4: 智能 Bug 报告系统
+<h3>使用</h3>
+<pre><code># 添加到定时任务
+<p>openclaw cron add "0 </em>/4 <em> </em> *" "node portfolio-monitor.js" </code></pre></p>
 
-u003cstrongu003e场景u003c/strongu003e: 自动收集错误信息，生成详细的 Bug 报告
+<hr>
 
-u003ch3u003e错误处理器
-u003cpreu003eu003ccodeu003ejavascript
-// bug-reporter.js
-const BugReporter = {
-  async handleError(error, context) {
-    // 收集上下文
-    const debugInfo = {
-      error: error.message,
-      stack: error.stack,
-      timestamp: new Date().toISOString(),
-      context: context,
-      logs: await this.getRecentLogs()
-    };
-    
-    // AI 分析
-    const analysis = await openclaw.exec(`
-      分析以下错误：
-      ${JSON.stringify(debugInfo, null, 2)}
-      
-      提供：
-      1. 可能的原因
-      2. 影响评估
-      3. 修复建议
-      4. 优先级判断
-    `);
-    
-    // 生成报告
-    const report = {
-      title: u003ccodeu003eBug: ${error.message.substring(0, 50)}u003c/codeu003e,
-      description: analysis,
-      priority: analysis.priority,
-      labels: analysis.labels
-    };
-    
-    // 创建 GitHub Issue
-    await this.createIssue(report);
-    
-    // 发送告警
-    if (analysis.priority === 'high') {
-      await this.sendAlert(report);
-    }
-  }
-};
-u003cpreu003eu003ccodeu003e
+<h2>📝 案例 3: 内容创作流水线</h2>
 
----
+<p><strong>场景</strong>: 从选题到发布的全自动内容创作</p>
 
-u003ch2u003e🎯 案例 5: 客户支持自动化
+<h3>流程</h3>
+<pre><code>#!/bin/bash
+<h1>content-pipeline.sh</h1>
 
-u003cstrongu003e场景u003c/strongu003e: 自动回复客户邮件，分类问题，生成 FAQ
+<h1>1. 选题研究</h1>
+<p>echo "🔍 研究热门话题..." TOPIC=$(openclaw exec "基于今日热点，推荐一个技术博客选题")</p>
 
-u003ch3u003e邮件处理工作流
-u003cpreu003eu003ccodeu003eyaml
-name: Customer Support Auto-Reply
-trigger: email-received
+<h1>2. 大纲生成</h1>
+<p>echo "📝 生成文章大纲..." OUTLINE=$(openclaw exec "为'${TOPIC}'生成详细的文章大纲")</p>
 
-steps:
-  1-classify:
-    action: llm
-    prompt: |
-      分类这封客户邮件的意图：
-      Subject: {{email.subject}}
-      Body: {{email.body}}
-      
-      分类：咨询/投诉/技术问题/账单/其他
-  
-  2-generate-reply:
-    action: llm
-    prompt: |
-      为以下邮件生成专业回复：
-      分类：{{steps.1-classify.category}}
-      
-      Original: {{email.body}}
-      
-      回复应该：
-      1. 专业礼貌
-      2. 直接回答或请求更多信息
-      3. 提供相关资源链接
-  
-  3-send-reply:
-    skill: email
-    action: send
-    params:
-      to: "{{email.from}}"
-      subject: "Re: {{email.subject}}"
-      body: "{{steps.2-generate-reply.output}}"
-  
-  4-update-faq:
-    condition: "{{steps.1-classify.isCommon}}"
-    action: append
-    params:
-      file: "faq.md"
-      content: "{{steps.2-generate-reply.question_answer}}"
-u003cpreu003eu003ccodeu003e
+<h1>3. 内容创作</h1>
+<p>echo "✍️ 创作内容..." CONTENT=$(openclaw exec "基于大纲创作完整文章：${OUTLINE}")</p>
 
----
+<h1>4. SEO 优化</h1>
+<p>echo "🔍 SEO 优化..." SEO_CONTENT=$(openclaw exec "优化以下内容的关键词和结构：${CONTENT}")</p>
 
-u003ch2u003e📈 案例 6: 竞品监控系统
+<h1>5. 生成配图</h1>
+<p>echo "🎨 生成配图..." openclaw exec "为文章生成封面图片描述"</p>
 
-u003cstrongu003e场景u003c/strongu003e: 自动监控竞争对手动态，生成分析报告
+<h1>6. 发布到多平台</h1>
+<p>echo "📤 发布内容..." openclaw skills use blog-publish --content "${SEO_CONTENT}" --platforms hashnode,devto</p>
 
-u003ch3u003e监控脚本
-u003cpreu003eu003ccodeu003ebash
-#!/bin/bash
-u003ch1u003ecompetitor-monitor.sh
+<h1>7. 社交推广</h1>
+<p>echo "📱 社交推广..." TWEET=$(openclaw exec "为文章生成一条 Twitter 推广文案：${TOPIC}") openclaw skills use twitter --post "${TWEET}"</p>
 
-COMPETITORS=("competitor1.com" "competitor2.com" "competitor3.com")
+<p>echo "✅ 内容创作流水线完成！" </code></pre></p>
 
-for competitor in "${COMPETITORS[@]}"; do
-  echo "🔍 监控 ${competitor}..."
-  
-  # 获取网站变化
-  CHANGES=$(openclaw skills use browser --action diff --url "https://${competitor}")
-  
-  # 分析社交媒体
-  SOCIAL=$(openclaw exec "搜索 ${competitor} 最近一周的社交媒体动态")
-  
-  # 生成洞察
-  INSIGHT=$(openclaw exec "
-    基于以下信息，分析 ${competitor} 的最新动向：
-    网站变化：${CHANGES}
-    社交媒体：${SOCIAL}
-  ")
-  
-  echo "${INSIGHT}" >> "reports/${competitor}-$(date +%Y%m%d).md"
-done
+<hr>
 
-u003ch1u003e生成汇总报告
-openclaw exec "基于所有竞品报告，生成周汇总分析"
+<h2>🐛 案例 4: 智能 Bug 报告系统</h2>
 
-u003ch1u003e发送给团队
-openclaw skills use email --send-report "reports/summary-$(date +%Y%m%d).md"
-u003cpreu003eu003ccodeu003e
+<p><strong>场景</strong>: 自动收集错误信息，生成详细的 Bug 报告</p>
 
----
+<h3>错误处理器</h3>
+<pre><code>// bug-reporter.js
+<p>const BugReporter = {   async handleError(error, context) {     // 收集上下文     const debugInfo = {       error: error.message,       stack: error.stack,       timestamp: new Date().toISOString(),       context: context,       logs: await this.getRecentLogs()     };</p>
 
-u003ch2u003e🔍 案例 7: 代码审查助手
+<p>    // AI 分析     const analysis = await openclaw.exec(<code>       分析以下错误：       ${JSON.stringify(debugInfo, null, 2)}</p>
 
-u003cstrongu003e场景u003c/strongu003e: 自动审查代码提交，发现问题并提供建议
+<p>      提供：       1. 可能的原因       2. 影响评估       3. 修复建议       4. 优先级判断     </code>);</p>
 
-u003ch3u003eGit Hook 集成
-u003cpreu003eu003ccodeu003ebash
-#!/bin/bash
-u003ch1u003e.git/hooks/pre-commit
+<p>    // 生成报告     const report = {       title: <code>Bug: ${error.message.substring(0, 50)}</code>,       description: analysis,       priority: analysis.priority,       labels: analysis.labels     };</p>
 
-u003ch1u003e获取变更文件
-FILES=$(git diff --cached --name-only --diff-filter=ACM | grep '\.(js|ts|py)$')
+<p>    // 创建 GitHub Issue     await this.createIssue(report);</p>
 
-for file in $FILES; do
-  echo "🔍 审查 ${file}..."
-  
-  # 代码分析
-  REVIEW=$(openclaw exec "
-    审查以下代码变更：
-    $(git diff --cached "${file}")
-    
-    检查：
-    1. 代码质量
-    2. 潜在 Bug
-    3. 安全漏洞
-    4. 性能问题
-    5. 最佳实践
-  ")
-  
-  # 如果发现问题，阻止提交
-  if echo "$REVIEW" | grep -q "CRITICAL\|BLOCKER"; then
-    echo "❌ 发现严重问题，提交被阻止："
-    echo "$REVIEW"
-    exit 1
-  fi
-  
-  echo "${REVIEW}" >> ".code-reviews/${file}-$(date +%s).md"
-done
-u003cpreu003eu003ccodeu003e
+<p>    // 发送告警     if (analysis.priority === 'high') {       await this.sendAlert(report);     }   } }; </code></pre></p>
 
----
+<hr>
 
-u003ch2u003e🎓 案例 8: 个性化学习助手
+<h2>🎯 案例 5: 客户支持自动化</h2>
 
-u003cstrongu003e场景u003c/strongu003e: 根据用户进度，自动生成学习计划和测验
+<p><strong>场景</strong>: 自动回复客户邮件，分类问题，生成 FAQ</p>
 
-u003ch3u003e学习系统
-u003cpreu003eu003ccodeu003ejavascript
-// learning-assistant.js
-const LearningAssistant = {
-  async createPlan(topic, userLevel) {
-    // 分析用户水平
-    const assessment = await openclaw.exec(`
-      基于用户水平 "${userLevel}"，评估学习 "${topic}" 的前提知识
-    `);
-    
-    // 生成学习路径
-    const plan = await openclaw.exec(`
-      为学习 "${topic}" 创建一个 30 天学习计划：
-      当前水平：${userLevel}
-      知识差距：${assessment.gaps}
-      
-      包括：
-      1. 每日学习目标
-      2. 推荐资源
-      3. 练习任务
-      4. 里程碑检查点
-    `);
-    
-    return plan;
-  },
-  
-  async generateQuiz(topic, difficulty) {
-    return openclaw.exec(`
-      为 "${topic}" 生成 10 道 ${difficulty} 难度测验题：
-      - 混合题型（选择、填空、简答）
-      - 附带答案和解析
-    `);
-  }
-};
-u003cpreu003eu003ccodeu003e
+<h3>邮件处理工作流</h3>
+<pre><code>name: Customer Support Auto-Reply
+<p>trigger: email-received</p>
 
----
+<p>steps:   1-classify:     action: llm     prompt: |       分类这封客户邮件的意图：       Subject: {{email.subject}}       Body: {{email.body}}</p>
 
-u003ch2u003e🚀 快速部署
+<p>      分类：咨询/投诉/技术问题/账单/其他</p>
 
-u003ch3u003e一键安装所有案例
-u003cpreu003eu003ccodeu003ebash
-u003ch1u003e克隆案例库
-git clone https://github.com/openclaw/examples
+<p>  2-generate-reply:     action: llm     prompt: |       为以下邮件生成专业回复：       分类：{{steps.1-classify.category}}</p>
 
-u003ch1u003e安装依赖
-cd examples && npm install
+<p>      Original: {{email.body}}</p>
 
-u003ch1u003e运行案例
-openclaw example run daily-report
-u003cpreu003eu003ccodeu003e
+<p>      回复应该：       1. 专业礼貌       2. 直接回答或请求更多信息       3. 提供相关资源链接</p>
 
-u003ch3u003e贡献你的案例
-u003cpreu003eu003ccodeu003ebash
-u003ch1u003e创建新案例
-openclaw example create my-awesome-case
+<p>  3-send-reply:     skill: email     action: send     params:       to: "{{email.from}}"       subject: "Re: {{email.subject}}"       body: "{{steps.2-generate-reply.output}}"</p>
 
-u003ch1u003e提交 PR
-git push origin my-case
-u003cpreu003eu003ccodeu003e
+<p>  4-update-faq:     condition: "{{steps.1-classify.isCommon}}"     action: append     params:       file: "faq.md"       content: "{{steps.2-generate-reply.question_answer}}" </code></pre></p>
 
----
+<hr>
 
-u003cstrongu003e更多案例持续更新中...u003c/strongu003e
+<h2>📈 案例 6: 竞品监控系统</h2>
 
-u003cstrongu003e有创意？分享你的 OpenClaw 使用案例！u003c/strongu003e
+<p><strong>场景</strong>: 自动监控竞争对手动态，生成分析报告</p>
+
+<h3>监控脚本</h3>
+<pre><code>#!/bin/bash
+<h1>competitor-monitor.sh</h1>
+
+<p>COMPETITORS=("competitor1.com" "competitor2.com" "competitor3.com")</p>
+
+<p>for competitor in "${COMPETITORS[@]}"; do   echo "🔍 监控 ${competitor}..."</p>
+
+<p>  # 获取网站变化   CHANGES=$(openclaw skills use browser --action diff --url "https://${competitor}")</p>
+
+<p>  # 分析社交媒体   SOCIAL=$(openclaw exec "搜索 ${competitor} 最近一周的社交媒体动态")</p>
+
+<p>  # 生成洞察   INSIGHT=$(openclaw exec "     基于以下信息，分析 ${competitor} 的最新动向：     网站变化：${CHANGES}     社交媒体：${SOCIAL}   ")</p>
+
+<p>  echo "${INSIGHT}" &gt;&gt; "reports/${competitor}-$(date +%Y%m%d).md" done</p>
+
+<h1>生成汇总报告</h1>
+<p>openclaw exec "基于所有竞品报告，生成周汇总分析"</p>
+
+<h1>发送给团队</h1>
+<p>openclaw skills use email --send-report "reports/summary-$(date +%Y%m%d).md" </code></pre></p>
+
+<hr>
+
+<h2>🔍 案例 7: 代码审查助手</h2>
+
+<p><strong>场景</strong>: 自动审查代码提交，发现问题并提供建议</p>
+
+<h3>Git Hook 集成</h3>
+<pre><code>#!/bin/bash
+<h1>.git/hooks/pre-commit</h1>
+
+<h1>获取变更文件</h1>
+<table>
+<tr><td>FILES=$(git diff --cached --name-only --diff-filter=ACM</td><td>grep '\.(js</td><td>ts</td><td>py)$')</td></tr>
+<p></table></p>
+
+<p>for file in $FILES; do   echo "🔍 审查 ${file}..."</p>
+
+<p>  # 代码分析   REVIEW=$(openclaw exec "     审查以下代码变更：     $(git diff --cached "${file}")</p>
+
+<p>    检查：     1. 代码质量     2. 潜在 Bug     3. 安全漏洞     4. 性能问题     5. 最佳实践   ")</p>
+
+<p>  # 如果发现问题，阻止提交</p>
+<table>
+<tr><td>if echo "$REVIEW"</td><td>grep -q "CRITICAL\</td><td>BLOCKER"; then</td></tr>
+<p></table>     echo "❌ 发现严重问题，提交被阻止："     echo "$REVIEW"     exit 1   fi</p>
+
+<p>  echo "${REVIEW}" &gt;&gt; ".code-reviews/${file}-$(date +%s).md" done </code></pre></p>
+
+<hr>
+
+<h2>🎓 案例 8: 个性化学习助手</h2>
+
+<p><strong>场景</strong>: 根据用户进度，自动生成学习计划和测验</p>
+
+<h3>学习系统</h3>
+<pre><code>// learning-assistant.js
+<p>const LearningAssistant = {   async createPlan(topic, userLevel) {     // 分析用户水平     const assessment = await openclaw.exec(<code>       基于用户水平 "${userLevel}"，评估学习 "${topic}" 的前提知识     </code>);</p>
+
+<p>    // 生成学习路径     const plan = await openclaw.exec(<code>       为学习 "${topic}" 创建一个 30 天学习计划：       当前水平：${userLevel}       知识差距：${assessment.gaps}</p>
+
+<p>      包括：       1. 每日学习目标       2. 推荐资源       3. 练习任务       4. 里程碑检查点     </code>);</p>
+
+<p>    return plan;   },</p>
+
+<p>  async generateQuiz(topic, difficulty) {     return openclaw.exec(<code>       为 "${topic}" 生成 10 道 ${difficulty} 难度测验题：       - 混合题型（选择、填空、简答）       - 附带答案和解析     </code>);   } }; </code></pre></p>
+
+<hr>
+
+<h2>🚀 快速部署</h2>
+
+<h3>一键安装所有案例</h3>
+<pre><code># 克隆案例库
+<p>git clone https://github.com/openclaw/examples</p>
+
+<h1>安装依赖</h1>
+<p>cd examples &amp;&amp; npm install</p>
+
+<h1>运行案例</h1>
+<p>openclaw example run daily-report </code></pre></p>
+
+<h3>贡献你的案例</h3>
+<pre><code># 创建新案例
+<p>openclaw example create my-awesome-case</p>
+
+<h1>提交 PR</h1>
+<p>git push origin my-case </code></pre></p>
+
+<hr>
+
+<p><strong>更多案例持续更新中...</strong></p>
+
+<p><strong>有创意？分享你的 OpenClaw 使用案例！</strong></p>
+
     </article>
 </body>
 </html>

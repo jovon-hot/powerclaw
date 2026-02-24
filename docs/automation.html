@@ -8,24 +8,30 @@
         :root { --bg: #0a0a0a; --bg-card: #161616; --text: #fff; --text-sec: #999; --border: #2a2a2a; }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; max-width: 900px; margin: 0 auto; padding: 40px 20px; }
-        h1 { font-size: 2rem; margin-bottom: 30px; border-bottom: 1px solid var(--border); padding-bottom: 15px; }
-        h2 { font-size: 1.5rem; margin: 40px 0 20px; color: var(--text); }
+        h1 { font-size: 2rem; margin-bottom: 30px; border-bottom: 1px solid var(--border); padding-bottom: 15px; color: var(--text); }
+        h2 { font-size: 1.5rem; margin: 40px 0 20px; color: var(--text); border-bottom: 1px solid var(--border); padding-bottom: 10px; }
         h3 { font-size: 1.2rem; margin: 30px 0 15px; color: var(--text-sec); }
+        h4 { font-size: 1.1rem; margin: 25px 0 12px; color: var(--text-sec); }
         p { margin-bottom: 15px; color: var(--text-sec); }
         ul, ol { margin: 15px 0; padding-left: 30px; color: var(--text-sec); }
         li { margin: 8px 0; }
         a { color: #4a9eff; text-decoration: none; }
         a:hover { text-decoration: underline; }
-        code { background: var(--bg-card); padding: 2px 8px; border-radius: 4px; font-family: monospace; font-size: 0.9em; }
-        pre { background: var(--bg-card); padding: 20px; border-radius: 8px; overflow-x: auto; margin: 20px 0; }
-        pre code { background: none; padding: 0; }
-        blockquote { border-left: 3px solid var(--text-sec); padding-left: 20px; margin: 20px 0; color: var(--text-sec); }
+        code { background: var(--bg-card); padding: 2px 8px; border-radius: 4px; font-family: 'Monaco', 'Menlo', monospace; font-size: 0.9em; color: #e6e6e6; }
+        pre { background: var(--bg-card); padding: 20px; border-radius: 8px; overflow-x: auto; margin: 20px 0; border: 1px solid var(--border); }
+        pre code { background: none; padding: 0; color: #e6e6e6; }
+        blockquote { border-left: 3px solid #4a9eff; padding-left: 20px; margin: 20px 0; color: var(--text-sec); font-style: italic; }
         table { width: 100%; border-collapse: collapse; margin: 20px 0; }
         th, td { padding: 12px; text-align: left; border-bottom: 1px solid var(--border); }
-        th { color: var(--text); }
+        th { color: var(--text); background: var(--bg-card); font-weight: 600; }
+        tr:hover { background: rgba(255,255,255,0.02); }
+        hr { border: none; border-top: 1px solid var(--border); margin: 30px 0; }
         .nav { margin-bottom: 40px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
-        .nav a { color: var(--text-sec); margin-right: 20px; }
+        .nav a { color: var(--text-sec); margin-right: 20px; text-decoration: none; }
         .nav a:hover { color: var(--text); }
+        .meta { color: var(--text-sec); font-size: 0.9em; margin-bottom: 30px; }
+        strong { color: var(--text); }
+        em { font-style: italic; }
     </style>
 </head>
 <body>
@@ -34,294 +40,161 @@
         <a href="/powerclaw/docs/">文档索引</a>
     </div>
     <article>
-u003ch1u003e自动化工作流实战
+<h1>自动化工作流实战</h1>
 
-学习如何使用 OpenClaw 创建全自动化的工作流。
+<p>学习如何使用 OpenClaw 创建全自动化的工作流。</p>
 
-u003ch2u003e工作流 1: 每日新闻摘要
+<h2>工作流 1: 每日新闻摘要</h2>
 
-u003cstrongu003e目标u003c/strongu003e: 每天早上自动获取科技新闻并发送邮件
+<p><strong>目标</strong>: 每天早上自动获取科技新闻并发送邮件</p>
 
-u003ch3u003e配置
+<h3>配置</h3>
 
-u003cpreu003eu003ccodeu003eyaml
-u003ch1u003eworkflows/daily-news.yaml
-name: Daily Tech News
-schedule: "0 9 u003cemu003e u003c/emu003e *"  # 每天 9:00
+<pre><code># workflows/daily-news.yaml
+<p>name: Daily Tech News schedule: "0 9 <em> </em> <em>"  # 每天 9:00</p>
 
-steps:
-  - name: search-news
-    skill: web-search
-    params:
-      query: "科技新闻 AI 人工智能 2025"
-      count: 10
-  
-  - name: summarize
-    action: llm
-    prompt: |
-      总结以下新闻的要点，用中文输出：
-      {{steps.search-news.results}}
-  
-  - name: send-email
-    skill: email
-    params:
-      to: "{{config.user.email}}"
-      subject: "每日科技新闻 - {{date}}"
-      body: "{{steps.summarize.output}}"
-u003cpreu003eu003ccodeu003e
+<p>steps:   - name: search-news     skill: web-search     params:       query: "科技新闻 AI 人工智能 2025"       count: 10</p>
 
-u003ch3u003e部署
+<p>  - name: summarize     action: llm     prompt: |       总结以下新闻的要点，用中文输出：       {{steps.search-news.results}}</p>
 
-u003cpreu003eu003ccodeu003ebash
-u003ch1u003e添加工作流
-openclaw workflow add workflows/daily-news.yaml
+<p>  - name: send-email     skill: email     params:       to: "{{config.user.email}}"       subject: "每日科技新闻 - {{date}}"       body: "{{steps.summarize.output}}" </code></pre></p>
 
-u003ch1u003e启用自动运行
-openclaw workflow enable daily-news
-u003cpreu003eu003ccodeu003e
+<h3>部署</h3>
 
-u003ch2u003e工作流 2: 代码自动审查
+<pre><code># 添加工作流
+<p>openclaw workflow add workflows/daily-news.yaml</p>
 
-u003cstrongu003e目标u003c/strongu003e: Git 提交前自动检查代码质量
+<h1>启用自动运行</h1>
+<p>openclaw workflow enable daily-news </code></pre></p>
 
-u003ch3u003e配置
+<h2>工作流 2: 代码自动审查</h2>
 
-u003cpreu003eu003ccodeu003eyaml
-u003ch1u003eworkflows/code-review.yaml
-name: Auto Code Review
-trigger: pre-commit
+<p><strong>目标</strong>: Git 提交前自动检查代码质量</p>
 
-steps:
-  - name: analyze-code
-    action: llm
-    prompt: |
-      审查以下代码变更：
-      {{git.diff}}
-      
-      检查：
-      1. 潜在 bug
-      2. 代码风格
-      3. 性能问题
-      4. 安全漏洞
-  
-  - name: check-secrets
-    skill: security-scan
-    params:
-      check: ["api_keys", "passwords", "tokens"]
-  
-  - name: generate-report
-    action: llm
-    prompt: |
-      生成代码审查报告：
-      {{steps.analyze-code.output}}
-      {{steps.check-secrets.findings}}
-u003cpreu003eu003ccodeu003e
+<h3>配置</h3>
 
-u003ch3u003eGit Hook 集成
+<pre><code># workflows/code-review.yaml
+<p>name: Auto Code Review trigger: pre-commit</p>
 
-u003cpreu003eu003ccodeu003ebash
-u003ch1u003e安装 git hook
-openclaw hook install pre-commit code-review
-u003cpreu003eu003ccodeu003e
+<p>steps:   - name: analyze-code     action: llm     prompt: |       审查以下代码变更：       {{git.diff}}</p>
 
-u003ch2u003e工作流 3: 社交媒体自动发布
+<p>      检查：       1. 潜在 bug       2. 代码风格       3. 性能问题       4. 安全漏洞</p>
 
-u003cstrongu003e目标u003c/strongu003e: 自动从 RSS 读取内容并发布到社交媒体
+<p>  - name: check-secrets     skill: security-scan     params:       check: ["api_keys", "passwords", "tokens"]</p>
 
-u003ch3u003e配置
+<p>  - name: generate-report     action: llm     prompt: |       生成代码审查报告：       {{steps.analyze-code.output}}       {{steps.check-secrets.findings}} </code></pre></p>
 
-u003cpreu003eu003ccodeu003eyaml
-u003ch1u003eworkflows/social-post.yaml
-name: Auto Social Post
-schedule: "0 u003cemu003e/4 u003c/emu003e u003cemu003e u003c/emu003e"  # 每 4 小时
+<h3>Git Hook 集成</h3>
 
-steps:
-  - name: fetch-rss
-    skill: rss-reader
-    params:
-      url: "https://example.com/feed.xml"
-      limit: 5
-  
-  - name: rewrite-content
-    action: llm
-    prompt: |
-      将以下内容改写为适合社交媒体的短文（不超过 280 字）：
-      {{steps.fetch-rss.items[0].title}}
-      {{steps.fetch-rss.items[0].summary}}
-  
-  - name: post-twitter
-    skill: twitter
-    params:
-      text: "{{steps.rewrite-content.output}}"
-      
-  - name: post-linkedin
-    skill: linkedin
-    params:
-      text: "{{steps.rewrite-content.output}}"
-      link: "{{steps.fetch-rss.items[0].link}}"
-u003cpreu003eu003ccodeu003e
+<pre><code># 安装 git hook
+<p>openclaw hook install pre-commit code-review </code></pre></p>
 
-u003ch2u003e工作流 4: 数据备份自动化
+<h2>工作流 3: 社交媒体自动发布</h2>
 
-u003cstrongu003e目标u003c/strongu003e: 定期备份重要数据到云端
+<p><strong>目标</strong>: 自动从 RSS 读取内容并发布到社交媒体</p>
 
-u003ch3u003e配置
+<h3>配置</h3>
 
-u003cpreu003eu003ccodeu003eyaml
-u003ch1u003eworkflows/backup.yaml
-name: Data Backup
-schedule: "0 2 u003cemu003e u003c/emu003e *"  # 每天凌晨 2:00
+<pre><code># workflows/social-post.yaml
+<p>name: Auto Social Post schedule: "0 </em>/4 <em> </em> <em>"  # 每 4 小时</p>
 
-steps:
-  - name: compress-data
-    shell: |
-      tar -czf backup-{{date}}.tar.gz ~/Documents ~/Projects
-  
-  - name: upload-s3
-    skill: aws-s3
-    params:
-      bucket: "my-backups"
-      key: "openclaw/backup-{{date}}.tar.gz"
-      file: "backup-{{date}}.tar.gz"
-  
-  - name: cleanup-old
-    shell: |
-      # 删除 30 天前的备份
-      find . -name "backup-*.tar.gz" -mtime +30 -delete
-  
-  - name: notify
-    skill: slack
-    params:
-      message: "✅ 每日备份完成 - {{date}}"
-u003cpreu003eu003ccodeu003e
+<p>steps:   - name: fetch-rss     skill: rss-reader     params:       url: "https://example.com/feed.xml"       limit: 5</p>
 
-u003ch2u003e工作流 5: 智能投资决策
+<p>  - name: rewrite-content     action: llm     prompt: |       将以下内容改写为适合社交媒体的短文（不超过 280 字）：       {{steps.fetch-rss.items[0].title}}       {{steps.fetch-rss.items[0].summary}}</p>
 
-u003cstrongu003e目标u003c/strongu003e: 监控市场并自动执行投资策略
+<p>  - name: post-twitter     skill: twitter     params:       text: "{{steps.rewrite-content.output}}"</p>
 
-u003ch3u003e配置
+<p>  - name: post-linkedin     skill: linkedin     params:       text: "{{steps.rewrite-content.output}}"       link: "{{steps.fetch-rss.items[0].link}}" </code></pre></p>
 
-u003cpreu003eu003ccodeu003eyaml
-u003ch1u003eworkflows/trading.yaml
-name: Smart Trading
-schedule: "0 u003cemu003e/1 u003c/emu003e u003cemu003e u003c/emu003e"  # 每小时检查
+<h2>工作流 4: 数据备份自动化</h2>
 
-steps:
-  - name: fetch-prices
-    skill: crypto-api
-    params:
-      symbols: ["BTC", "ETH", "SOL"]
-  
-  - name: analyze-trend
-    action: llm
-    prompt: |
-      分析以下价格数据，判断趋势：
-      {{steps.fetch-prices.data}}
-      
-      输出：
-      - 趋势方向（上涨/下跌/震荡）
-      - 置信度（0-1）
-      - 建议操作（买入/卖出/持有）
-  
-  - name: execute-trade
-    condition: "{{steps.analyze-trend.confidence}} > 0.8"
-    skill: trading-api
-    params:
-      action: "{{steps.analyze-trend.recommendation}}"
-      symbol: "{{steps.analyze-trend.best-opportunity}}"
-      amount: "{{config.trading.default-amount}}"
-  
-  - name: log-decision
-    action: log
-    params:
-      level: "info"
-      message: "交易执行：{{steps.execute-trade.result}}"
-u003cpreu003eu003ccodeu003e
+<p><strong>目标</strong>: 定期备份重要数据到云端</p>
 
-u003ch2u003e高级技巧
+<h3>配置</h3>
 
-u003ch3u003e条件执行
+<pre><code># workflows/backup.yaml
+<p>name: Data Backup schedule: "0 2 </em> <em> </em>"  # 每天凌晨 2:00</p>
 
-u003cpreu003eu003ccodeu003eyaml
-steps:
-  - name: check-condition
-    action: evaluate
-    expression: "{{data.price}} > {{config.threshold}}"
-  
-  - name: conditional-action
-    condition: "{{steps.check-condition.result}} == true"
-    action: send-alert
-u003cpreu003eu003ccodeu003e
+<p>steps:   - name: compress-data     shell: |       tar -czf backup-{{date}}.tar.gz ~/Documents ~/Projects</p>
 
-u003ch3u003e错误处理
+<p>  - name: upload-s3     skill: aws-s3     params:       bucket: "my-backups"       key: "openclaw/backup-{{date}}.tar.gz"       file: "backup-{{date}}.tar.gz"</p>
 
-u003cpreu003eu003ccodeu003eyaml
-steps:
-  - name: risky-operation
-    action: api-call
-    retry:
-      max-attempts: 3
-      delay: 5s
-    on-error:
-      action: send-notification
-      params:
-        message: "操作失败，已重试 3 次"
-u003cpreu003eu003ccodeu003e
+<p>  - name: cleanup-old     shell: |       # 删除 30 天前的备份       find . -name "backup-<em>.tar.gz" -mtime +30 -delete</p>
 
-u003ch3u003e并行执行
+<p>  - name: notify     skill: slack     params:       message: "✅ 每日备份完成 - {{date}}" </code></pre></p>
 
-u003cpreu003eu003ccodeu003eyaml
-steps:
-  - name: parallel-tasks
-    parallel:
-      - name: task-1
-        action: fetch-data
-        params: { source: "api1" }
-      - name: task-2
-        action: fetch-data
-        params: { source: "api2" }
-      - name: task-3
-        action: fetch-data
-        params: { source: "api3" }
-  
-  - name: merge-results
-    action: combine
-    inputs: ["{{steps.parallel-tasks.task-1}}", "{{steps.parallel-tasks.task-2}}", "{{steps.parallel-tasks.task-3}}"]
-u003cpreu003eu003ccodeu003e
+<h2>工作流 5: 智能投资决策</h2>
 
-u003ch2u003e调试工作流
+<p><strong>目标</strong>: 监控市场并自动执行投资策略</p>
 
-u003ch3u003e测试运行
+<h3>配置</h3>
 
-u003cpreu003eu003ccodeu003ebash
-u003ch1u003e手动触发工作流
-openclaw workflow run daily-news --dry-run
+<pre><code># workflows/trading.yaml
+<p>name: Smart Trading schedule: "0 </em>/1 <em> </em> *"  # 每小时检查</p>
 
-u003ch1u003e查看详细日志
-openclaw workflow logs daily-news --verbose
-u003cpreu003eu003ccodeu003e
+<p>steps:   - name: fetch-prices     skill: crypto-api     params:       symbols: ["BTC", "ETH", "SOL"]</p>
 
-u003ch3u003e监控状态
+<p>  - name: analyze-trend     action: llm     prompt: |       分析以下价格数据，判断趋势：       {{steps.fetch-prices.data}}</p>
 
-u003cpreu003eu003ccodeu003ebash
-u003ch1u003e查看工作流状态
-openclaw workflow status
+<p>      输出：       - 趋势方向（上涨/下跌/震荡）       - 置信度（0-1）       - 建议操作（买入/卖出/持有）</p>
 
-u003ch1u003e查看执行历史
-openclaw workflow history
-u003cpreu003eu003ccodeu003e
+<p>  - name: execute-trade     condition: "{{steps.analyze-trend.confidence}} &gt; 0.8"     skill: trading-api     params:       action: "{{steps.analyze-trend.recommendation}}"       symbol: "{{steps.analyze-trend.best-opportunity}}"       amount: "{{config.trading.default-amount}}"</p>
 
-u003ch2u003e最佳实践
+<p>  - name: log-decision     action: log     params:       level: "info"       message: "交易执行：{{steps.execute-trade.result}}" </code></pre></p>
 
-1. u003cstrongu003e从小做起u003c/strongu003e - 先创建简单的工作流，逐步增加复杂度
-2. u003cstrongu003e充分测试u003c/strongu003e - 使用 dry-run 模式测试后再启用
-3. u003cstrongu003e错误处理u003c/strongu003e - 为每个可能失败的步骤添加错误处理
-4. u003cstrongu003e监控告警u003c/strongu003e - 设置失败通知，及时了解问题
-5. u003cstrongu003e版本控制u003c/strongu003e - 将工作流文件纳入 Git 管理
+<h2>高级技巧</h2>
 
----
+<h3>条件执行</h3>
 
-u003cstrongu003e现在你可以创建自己的自动化工作流了！u003c/strongu003e 🚀
+<pre><code>steps:
+<p>  - name: check-condition     action: evaluate     expression: "{{data.price}} &gt; {{config.threshold}}"</p>
+
+<p>  - name: conditional-action     condition: "{{steps.check-condition.result}} == true"     action: send-alert </code></pre></p>
+
+<h3>错误处理</h3>
+
+<pre><code>steps:
+<p>  - name: risky-operation     action: api-call     retry:       max-attempts: 3       delay: 5s     on-error:       action: send-notification       params:         message: "操作失败，已重试 3 次" </code></pre></p>
+
+<h3>并行执行</h3>
+
+<pre><code>steps:
+<p>  - name: parallel-tasks     parallel:       - name: task-1         action: fetch-data         params: { source: "api1" }       - name: task-2         action: fetch-data         params: { source: "api2" }       - name: task-3         action: fetch-data         params: { source: "api3" }</p>
+
+<p>  - name: merge-results     action: combine     inputs: ["{{steps.parallel-tasks.task-1}}", "{{steps.parallel-tasks.task-2}}", "{{steps.parallel-tasks.task-3}}"] </code></pre></p>
+
+<h2>调试工作流</h2>
+
+<h3>测试运行</h3>
+
+<pre><code># 手动触发工作流
+<p>openclaw workflow run daily-news --dry-run</p>
+
+<h1>查看详细日志</h1>
+<p>openclaw workflow logs daily-news --verbose </code></pre></p>
+
+<h3>监控状态</h3>
+
+<pre><code># 查看工作流状态
+<p>openclaw workflow status</p>
+
+<h1>查看执行历史</h1>
+<p>openclaw workflow history </code></pre></p>
+
+<h2>最佳实践</h2>
+
+<ol>
+<li><strong>从小做起</strong> - 先创建简单的工作流，逐步增加复杂度</li>
+<li><strong>充分测试</strong> - 使用 dry-run 模式测试后再启用</li>
+<li><strong>错误处理</strong> - 为每个可能失败的步骤添加错误处理</li>
+<li><strong>监控告警</strong> - 设置失败通知，及时了解问题</li>
+<li><strong>版本控制</strong> - 将工作流文件纳入 Git 管理</li>
+<p></ol></p>
+
+<hr>
+
+<p><strong>现在你可以创建自己的自动化工作流了！</strong> 🚀</p>
+
     </article>
 </body>
 </html>

@@ -8,24 +8,30 @@
         :root { --bg: #0a0a0a; --bg-card: #161616; --text: #fff; --text-sec: #999; --border: #2a2a2a; }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; max-width: 900px; margin: 0 auto; padding: 40px 20px; }
-        h1 { font-size: 2rem; margin-bottom: 30px; border-bottom: 1px solid var(--border); padding-bottom: 15px; }
-        h2 { font-size: 1.5rem; margin: 40px 0 20px; color: var(--text); }
+        h1 { font-size: 2rem; margin-bottom: 30px; border-bottom: 1px solid var(--border); padding-bottom: 15px; color: var(--text); }
+        h2 { font-size: 1.5rem; margin: 40px 0 20px; color: var(--text); border-bottom: 1px solid var(--border); padding-bottom: 10px; }
         h3 { font-size: 1.2rem; margin: 30px 0 15px; color: var(--text-sec); }
+        h4 { font-size: 1.1rem; margin: 25px 0 12px; color: var(--text-sec); }
         p { margin-bottom: 15px; color: var(--text-sec); }
         ul, ol { margin: 15px 0; padding-left: 30px; color: var(--text-sec); }
         li { margin: 8px 0; }
         a { color: #4a9eff; text-decoration: none; }
         a:hover { text-decoration: underline; }
-        code { background: var(--bg-card); padding: 2px 8px; border-radius: 4px; font-family: monospace; font-size: 0.9em; }
-        pre { background: var(--bg-card); padding: 20px; border-radius: 8px; overflow-x: auto; margin: 20px 0; }
-        pre code { background: none; padding: 0; }
-        blockquote { border-left: 3px solid var(--text-sec); padding-left: 20px; margin: 20px 0; color: var(--text-sec); }
+        code { background: var(--bg-card); padding: 2px 8px; border-radius: 4px; font-family: 'Monaco', 'Menlo', monospace; font-size: 0.9em; color: #e6e6e6; }
+        pre { background: var(--bg-card); padding: 20px; border-radius: 8px; overflow-x: auto; margin: 20px 0; border: 1px solid var(--border); }
+        pre code { background: none; padding: 0; color: #e6e6e6; }
+        blockquote { border-left: 3px solid #4a9eff; padding-left: 20px; margin: 20px 0; color: var(--text-sec); font-style: italic; }
         table { width: 100%; border-collapse: collapse; margin: 20px 0; }
         th, td { padding: 12px; text-align: left; border-bottom: 1px solid var(--border); }
-        th { color: var(--text); }
+        th { color: var(--text); background: var(--bg-card); font-weight: 600; }
+        tr:hover { background: rgba(255,255,255,0.02); }
+        hr { border: none; border-top: 1px solid var(--border); margin: 30px 0; }
         .nav { margin-bottom: 40px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
-        .nav a { color: var(--text-sec); margin-right: 20px; }
+        .nav a { color: var(--text-sec); margin-right: 20px; text-decoration: none; }
         .nav a:hover { color: var(--text); }
+        .meta { color: var(--text-sec); font-size: 0.9em; margin-bottom: 30px; }
+        strong { color: var(--text); }
+        em { font-style: italic; }
     </style>
 </head>
 <body>
@@ -34,137 +40,119 @@
         <a href="/powerclaw/docs/">文档索引</a>
     </div>
     <article>
-u003ch1u003eSlack 配置指南
+<h1>Slack 配置指南</h1>
 
-u003ch2u003e1. 创建 Slack App
-1. 访问 https://api.slack.com/apps
-2. 点击 "Create New App" → "From scratch"
-3. 输入 App 名称: OpenClaw
-4. 选择你的工作区
+<h2>1. 创建 Slack App</h2>
+<ol>
+<li>访问 https://api.slack.com/apps</li>
+<li>点击 "Create New App" → "From scratch"</li>
+<li>输入 App 名称: OpenClaw</li>
+<li>选择你的工作区</li>
+<p></ol></p>
 
-u003ch2u003e2. 配置 OAuth 权限
-在左侧菜单点击 "OAuth & Permissions"
+<h2>2. 配置 OAuth 权限</h2>
+<p>在左侧菜单点击 "OAuth & Permissions"</p>
 
-添加以下 Bot Token Scopes:
-u003cliu003echat:write (发送消息)
-u003cliu003eim:write (私信)
-u003cliu003eim:history (读取私信历史)
-u003cliu003egroups:write (群组)
-u003cliu003empim:write (多人私信)
+<p>添加以下 Bot Token Scopes:</p>
+<ul>
+<li>chat:write (发送消息)</li>
+<li>im:write (私信)</li>
+<li>im:history (读取私信历史)</li>
+<li>groups:write (群组)</li>
+<li>mpim:write (多人私信)</li>
+<p></ul></p>
 
-u003ch2u003e3. 获取 Token
-1. 点击 "Install to Workspace"
-2. 授权应用
-3. 复制 "Bot User OAuth Token" (以 xoxb- 开头)
+<h2>3. 获取 Token</h2>
+<ol>
+<li>点击 "Install to Workspace"</li>
+<li>授权应用</li>
+<li>复制 "Bot User OAuth Token" (以 xoxb- 开头)</li>
+<p></ol></p>
 
-u003ch2u003e4. 配置 OpenClaw
+<h2>4. 配置 OpenClaw</h2>
 
-编辑配置文件:
-u003cpreu003eu003ccodeu003ebash
-openclaw configure
-u003cpreu003eu003ccodeu003e
+<p>编辑配置文件:</p>
+<pre><code>openclaw configure
+<p></code></pre></p>
 
-添加以下内容:
-u003cpreu003eu003ccodeu003ejson
-{
-  "channels": {
-    "slack": {
-      "token": "xoxb-your-token-here",
-      "enabled": true
-    }
-  }
-}
-u003cpreu003eu003ccodeu003e
+<p>添加以下内容:</p>
+<pre><code>{
+<p>  "channels": {     "slack": {       "token": "xoxb-your-token-here",       "enabled": true     }   } } </code></pre></p>
 
-u003ch2u003e5. 获取 Channel ID
+<h2>5. 获取 Channel ID</h2>
 
-u003ch3u003e方法 A: 通过 Slack 网页版
-1. 在浏览器中打开 Slack
-2. 进入你想聊天的频道或私信
-3. 查看 URL，格式如: u003ccodeu003ehttps://app.slack.com/client/T123/C123u003c/codeu003e
-4. u003ccodeu003eC123u003c/codeu003e 或 u003ccodeu003eD123u003c/codeu003e 就是 Channel ID
+<h3>方法 A: 通过 Slack 网页版</h3>
+<ol>
+<li>在浏览器中打开 Slack</li>
+<li>进入你想聊天的频道或私信</li>
+<li>查看 URL，格式如: <code>https://app.slack.com/client/T123/C123</code></li>
+<li><code>C123</code> 或 <code>D123</code> 就是 Channel ID</li>
+<p></ol></p>
 
-u003ch3u003e方法 B: 在 Slack 中查看
-1. 右键点击频道名称
-2. 选择 "View channel details"
-3. 复制 Channel ID
+<h3>方法 B: 在 Slack 中查看</h3>
+<ol>
+<li>右键点击频道名称</li>
+<li>选择 "View channel details"</li>
+<li>复制 Channel ID</li>
+<p></ol></p>
 
-u003ch2u003e6. 开始聊天
+<h2>6. 开始聊天</h2>
 
-现在你可以:
-u003cliu003e在 Slack 频道中 @OpenClaw 与我对话
-u003cliu003e或者直接私信 OpenClaw App
+<p>现在你可以:</p>
+<ul>
+<li>在 Slack 频道中 @OpenClaw 与我对话</li>
+<li>或者直接私信 OpenClaw App</li>
+<p></ul></p>
 
-我会自动回复你的消息！
+<p>我会自动回复你的消息！</p>
 
-u003ch2u003e测试命令
+<h2>测试命令</h2>
 
-发送消息给我:
-u003cpreu003eu003ccodeu003e
-@OpenClaw 你好，测试一下连接
-u003cpreu003eu003ccodeu003e
+<p>发送消息给我:</p>
+<pre><code>@OpenClaw 你好，测试一下连接
+<p></code></pre></p>
 
-我应该会回复确认消息。
+<p>我应该会回复确认消息。</p>
 
----
+<hr>
 
-u003ch2u003e故障排除
+<h2>故障排除</h2>
 
-u003cstrongu003e问题u003c/strongu003e: 收不到回复
-u003cliu003e检查 Token 是否正确
-u003cliu003e确认 App 已安装到工作区
-u003cliu003e查看 OpenClaw 日志: u003ccodeu003eopenclaw logsu003c/codeu003e
+<p><strong>问题</strong>: 收不到回复</p>
+<ul>
+<li>检查 Token 是否正确</li>
+<li>确认 App 已安装到工作区</li>
+<li>查看 OpenClaw 日志: <code>openclaw logs</code></li>
+<p></ul></p>
 
-u003cstrongu003e问题u003c/strongu003e: 权限错误
-u003cliu003e重新检查 OAuth Scopes
-u003cliu003e重新安装 App
+<p><strong>问题</strong>: 权限错误</p>
+<ul>
+<li>重新检查 OAuth Scopes</li>
+<li>重新安装 App</li>
+<p></ul></p>
 
-u003cstrongu003e问题u003c/strongu003e: 找不到 Channel ID
-u003cliu003e确保在正确的频道
-u003cliu003e使用网页版 Slack 查看 URL
+<p><strong>问题</strong>: 找不到 Channel ID</p>
+<ul>
+<li>确保在正确的频道</li>
+<li>使用网页版 Slack 查看 URL</li>
+<p></ul></p>
 
----
+<hr>
 
-u003ch2u003e进阶配置
+<h2>进阶配置</h2>
 
-u003ch3u003e多工作区支持
-u003cpreu003eu003ccodeu003ejson
-{
-  "channels": {
-    "slack": {
-      "accounts": [
-        {
-          "id": "work",
-          "token": "xoxb-work-token",
-          "enabled": true
-        },
-        {
-          "id": "personal",
-          "token": "xoxb-personal-token",
-          "enabled": true
-        }
-      ]
-    }
-  }
-}
-u003cpreu003eu003ccodeu003e
+<h3>多工作区支持</h3>
+<pre><code>{
+<p>  "channels": {     "slack": {       "accounts": [         {           "id": "work",           "token": "xoxb-work-token",           "enabled": true         },         {           "id": "personal",           "token": "xoxb-personal-token",           "enabled": true         }       ]     }   } } </code></pre></p>
 
-u003ch3u003e指定默认频道
-u003cpreu003eu003ccodeu003ejson
-{
-  "channels": {
-    "slack": {
-      "token": "xoxb-your-token",
-      "defaultChannel": "C1234567890",
-      "enabled": true
-    }
-  }
-}
-u003cpreu003eu003ccodeu003e
+<h3>指定默认频道</h3>
+<pre><code>{
+<p>  "channels": {     "slack": {       "token": "xoxb-your-token",       "defaultChannel": "C1234567890",       "enabled": true     }   } } </code></pre></p>
 
----
+<hr>
 
-配置完成后，你就可以在 Slack 中随时随地与我聊天了！
+<p>配置完成后，你就可以在 Slack 中随时随地与我聊天了！</p>
+
     </article>
 </body>
 </html>

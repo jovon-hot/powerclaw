@@ -8,24 +8,30 @@
         :root { --bg: #0a0a0a; --bg-card: #161616; --text: #fff; --text-sec: #999; --border: #2a2a2a; }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; max-width: 900px; margin: 0 auto; padding: 40px 20px; }
-        h1 { font-size: 2rem; margin-bottom: 30px; border-bottom: 1px solid var(--border); padding-bottom: 15px; }
-        h2 { font-size: 1.5rem; margin: 40px 0 20px; color: var(--text); }
+        h1 { font-size: 2rem; margin-bottom: 30px; border-bottom: 1px solid var(--border); padding-bottom: 15px; color: var(--text); }
+        h2 { font-size: 1.5rem; margin: 40px 0 20px; color: var(--text); border-bottom: 1px solid var(--border); padding-bottom: 10px; }
         h3 { font-size: 1.2rem; margin: 30px 0 15px; color: var(--text-sec); }
+        h4 { font-size: 1.1rem; margin: 25px 0 12px; color: var(--text-sec); }
         p { margin-bottom: 15px; color: var(--text-sec); }
         ul, ol { margin: 15px 0; padding-left: 30px; color: var(--text-sec); }
         li { margin: 8px 0; }
         a { color: #4a9eff; text-decoration: none; }
         a:hover { text-decoration: underline; }
-        code { background: var(--bg-card); padding: 2px 8px; border-radius: 4px; font-family: monospace; font-size: 0.9em; }
-        pre { background: var(--bg-card); padding: 20px; border-radius: 8px; overflow-x: auto; margin: 20px 0; }
-        pre code { background: none; padding: 0; }
-        blockquote { border-left: 3px solid var(--text-sec); padding-left: 20px; margin: 20px 0; color: var(--text-sec); }
+        code { background: var(--bg-card); padding: 2px 8px; border-radius: 4px; font-family: 'Monaco', 'Menlo', monospace; font-size: 0.9em; color: #e6e6e6; }
+        pre { background: var(--bg-card); padding: 20px; border-radius: 8px; overflow-x: auto; margin: 20px 0; border: 1px solid var(--border); }
+        pre code { background: none; padding: 0; color: #e6e6e6; }
+        blockquote { border-left: 3px solid #4a9eff; padding-left: 20px; margin: 20px 0; color: var(--text-sec); font-style: italic; }
         table { width: 100%; border-collapse: collapse; margin: 20px 0; }
         th, td { padding: 12px; text-align: left; border-bottom: 1px solid var(--border); }
-        th { color: var(--text); }
+        th { color: var(--text); background: var(--bg-card); font-weight: 600; }
+        tr:hover { background: rgba(255,255,255,0.02); }
+        hr { border: none; border-top: 1px solid var(--border); margin: 30px 0; }
         .nav { margin-bottom: 40px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
-        .nav a { color: var(--text-sec); margin-right: 20px; }
+        .nav a { color: var(--text-sec); margin-right: 20px; text-decoration: none; }
         .nav a:hover { color: var(--text); }
+        .meta { color: var(--text-sec); font-size: 0.9em; margin-bottom: 30px; }
+        strong { color: var(--text); }
+        em { font-style: italic; }
     </style>
 </head>
 <body>
@@ -34,152 +40,128 @@
         <a href="/powerclaw/docs/">文档索引</a>
     </div>
     <article>
-u003ch1u003eOpenClaw 快速开始指南
+<h1>OpenClaw 快速开始指南</h1>
 
-5 分钟上手 OpenClaw，让 AI 开始为你工作。
+<p>5 分钟上手 OpenClaw，让 AI 开始为你工作。</p>
 
-u003ch2u003e1. 安装 OpenClaw
+<h2>1. 安装 OpenClaw</h2>
 
-u003ch3u003emacOS (Homebrew)
+<h3>macOS (Homebrew)</h3>
 
-u003cpreu003eu003ccodeu003ebash
-brew tap openclaw/tap
-brew install openclaw
-u003cpreu003eu003ccodeu003e
+<pre><code>brew tap openclaw/tap
+<p>brew install openclaw </code></pre></p>
 
-u003ch3u003e验证安装
+<h3>验证安装</h3>
 
-u003cpreu003eu003ccodeu003ebash
-openclaw --version
-u003cpreu003eu003ccodeu003e
+<pre><code>openclaw --version
+<p></code></pre></p>
 
-u003ch2u003e2. 初始配置
+<h2>2. 初始配置</h2>
 
-u003cpreu003eu003ccodeu003ebash
-u003ch1u003e启动配置向导
-openclaw configure
+<pre><code># 启动配置向导
+<p>openclaw configure</p>
 
-u003ch1u003e设置工作目录
-openclaw config set workspace /path/to/your/workspace
-u003cpreu003eu003ccodeu003e
+<h1>设置工作目录</h1>
+<p>openclaw config set workspace /path/to/your/workspace </code></pre></p>
 
-u003ch2u003e3. 基础命令
+<h2>3. 基础命令</h2>
 
-u003ch3u003e查看状态
-u003cpreu003eu003ccodeu003ebash
-openclaw status
-u003cpreu003eu003ccodeu003e
+<h3>查看状态</h3>
+<pre><code>openclaw status
+<p></code></pre></p>
 
-u003ch3u003e使用 AI 助手
-u003cpreu003eu003ccodeu003ebash
-u003ch1u003e直接提问
-openclaw ask "如何自动化我的邮件回复？"
+<h3>使用 AI 助手</h3>
+<pre><code># 直接提问
+<p>openclaw ask "如何自动化我的邮件回复？"</p>
 
-u003ch1u003e执行文件
-openclaw run script.js
-u003cpreu003eu003ccodeu003e
+<h1>执行文件</h1>
+<p>openclaw run script.js </code></pre></p>
 
-u003ch3u003e管理技能
-u003cpreu003eu003ccodeu003ebash
-u003ch1u003e列出已安装技能
-openclaw skills list
+<h3>管理技能</h3>
+<pre><code># 列出已安装技能
+<p>openclaw skills list</p>
 
-u003ch1u003e安装新技能
-openclaw skills install web-search
+<h1>安装新技能</h1>
+<p>openclaw skills install web-search</p>
 
-u003ch1u003e使用技能
-openclaw skills use web-search "搜索最新的 AI 新闻"
-u003cpreu003eu003ccodeu003e
+<h1>使用技能</h1>
+<p>openclaw skills use web-search "搜索最新的 AI 新闻" </code></pre></p>
 
-u003ch2u003e4. 第一个自动化任务
+<h2>4. 第一个自动化任务</h2>
 
-创建一个简单的自动化脚本：
+<p>创建一个简单的自动化脚本：</p>
 
-u003cpreu003eu003ccodeu003ebash
-u003ch1u003e创建文件
-cat > hello.txt <> 'EOF'
-你好，我是 OpenClaw！
-EOF
+<pre><code># 创建文件
+<p>cat &gt; hello.txt &lt;&gt; 'EOF' 你好，我是 OpenClaw！ EOF</p>
 
-u003ch1u003e让 AI 处理
-openclaw ask "读取 hello.txt 并总结内容"
-u003cpreu003eu003ccodeu003e
+<h1>让 AI 处理</h1>
+<p>openclaw ask "读取 hello.txt 并总结内容" </code></pre></p>
 
-u003ch2u003e5. 进阶配置
+<h2>5. 进阶配置</h2>
 
-u003ch3u003e设置 API Key
+<h3>设置 API Key</h3>
 
-u003cpreu003eu003ccodeu003ebash
-u003ch1u003eOpenAI
-openclaw config set openai.api_key sk-...
+<pre><code># OpenAI
+<p>openclaw config set openai.api_key sk-...</p>
 
-u003ch1u003e其他服务
-openclaw config set serpapi.api_key ...
-u003cpreu003eu003ccodeu003e
+<h1>其他服务</h1>
+<p>openclaw config set serpapi.api_key ... </code></pre></p>
 
-u003ch3u003e配置模型
+<h3>配置模型</h3>
 
-u003cpreu003eu003ccodeu003ebash
-u003ch1u003e使用 GPT-4
-openclaw config set model gpt-4
+<pre><code># 使用 GPT-4
+<p>openclaw config set model gpt-4</p>
 
-u003ch1u003e使用 Claude
-openclaw config set model claude-3-opus
-u003cpreu003eu003ccodeu003e
+<h1>使用 Claude</h1>
+<p>openclaw config set model claude-3-opus </code></pre></p>
 
-u003ch2u003e6. 常用技巧
+<h2>6. 常用技巧</h2>
 
-u003ch3u003e技巧 1: 使用管道
-u003cpreu003eu003ccodeu003ebash
-echo "分析这段代码" | openclaw ask
-u003cpreu003eu003ccodeu003e
+<h3>技巧 1: 使用管道</h3>
+<table>
+<tr><td><pre><code>echo "分析这段代码"</td><td>openclaw ask</td></tr>
+<p></table> </code></pre></p>
 
-u003ch3u003e技巧 2: 批量处理
-u003cpreu003eu003ccodeu003ebash
-openclaw batch process *.md --action "翻译为英文"
-u003cpreu003eu003ccodeu003e
+<h3>技巧 2: 批量处理</h3>
+<pre><code>openclaw batch process <em>.md --action "翻译为英文"
+<p></code></pre></p>
 
-u003ch3u003e技巧 3: 定时任务
-u003cpreu003eu003ccodeu003ebash
-u003ch1u003e添加定时任务
-openclaw cron add "0 9 u003cemu003e u003c/emu003e *" "分析今日新闻"
-u003cpreu003eu003ccodeu003e
+<h3>技巧 3: 定时任务</h3>
+<pre><code># 添加定时任务
+<p>openclaw cron add "0 9 </em> <em> </em>" "分析今日新闻" </code></pre></p>
 
-u003ch2u003e7. 故障排除
+<h2>7. 故障排除</h2>
 
-u003ch3u003e问题 1: 命令未找到
-u003cpreu003eu003ccodeu003ebash
-u003ch1u003e检查安装
-which openclaw
+<h3>问题 1: 命令未找到</h3>
+<pre><code># 检查安装
+<p>which openclaw</p>
 
-u003ch1u003e重新安装
-brew reinstall openclaw
-u003cpreu003eu003ccodeu003e
+<h1>重新安装</h1>
+<p>brew reinstall openclaw </code></pre></p>
 
-u003ch3u003e问题 2: API 错误
-u003cpreu003eu003ccodeu003ebash
-u003ch1u003e验证 API Key
-openclaw config validate
+<h3>问题 2: API 错误</h3>
+<pre><code># 验证 API Key
+<p>openclaw config validate</p>
 
-u003ch1u003e查看日志
-openclaw logs
-u003cpreu003eu003ccodeu003e
+<h1>查看日志</h1>
+<p>openclaw logs </code></pre></p>
 
-u003ch3u003e问题 3: 权限问题
-u003cpreu003eu003ccodeu003ebash
-u003ch1u003e修复权限
-openclaw fix-permissions
-u003cpreu003eu003ccodeu003e
+<h3>问题 3: 权限问题</h3>
+<pre><code># 修复权限
+<p>openclaw fix-permissions </code></pre></p>
 
-u003ch2u003e8. 下一步
+<h2>8. 下一步</h2>
 
-u003cliu003e📖 阅读 [完整文档](docs/)
-u003cliu003e🎯 查看 [实战案例](examples/)
-u003cliu003e🤝 加入 [社区讨论](https://github.com/openclaw/openclaw/discussions)
+<ul>
+<li>📖 阅读 <a href="docs/">完整文档</a></li>
+<li>🎯 查看 <a href="examples/">实战案例</a></li>
+<li>🤝 加入 <a href="https://github.com/openclaw/openclaw/discussions">社区讨论</a></li>
+<p></ul></p>
 
----
+<hr>
 
-u003cstrongu003e恭喜！你已经完成了 OpenClaw 的入门配置。u003c/strongu003e 🎉
+<p><strong>恭喜！你已经完成了 OpenClaw 的入门配置。</strong> 🎉</p>
+
     </article>
 </body>
 </html>
