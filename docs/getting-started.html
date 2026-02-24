@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenClaw 快速开始指南 | PowerClaw</title>
+    <style>
+        :root { --bg: #0a0a0a; --bg-card: #161616; --text: #fff; --text-sec: #999; --border: #2a2a2a; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; max-width: 900px; margin: 0 auto; padding: 40px 20px; }
+        h1 { font-size: 2rem; margin-bottom: 30px; border-bottom: 1px solid var(--border); padding-bottom: 15px; }
+        h2 { font-size: 1.5rem; margin: 40px 0 20px; color: var(--text); }
+        h3 { font-size: 1.2rem; margin: 30px 0 15px; color: var(--text-sec); }
+        p { margin-bottom: 15px; color: var(--text-sec); }
+        ul, ol { margin: 15px 0; padding-left: 30px; color: var(--text-sec); }
+        li { margin: 8px 0; }
+        a { color: #4a9eff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        code { background: var(--bg-card); padding: 2px 8px; border-radius: 4px; font-family: monospace; font-size: 0.9em; }
+        pre { background: var(--bg-card); padding: 20px; border-radius: 8px; overflow-x: auto; margin: 20px 0; }
+        pre code { background: none; padding: 0; }
+        blockquote { border-left: 3px solid var(--text-sec); padding-left: 20px; margin: 20px 0; color: var(--text-sec); }
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        th, td { padding: 12px; text-align: left; border-bottom: 1px solid var(--border); }
+        th { color: var(--text); }
+        .nav { margin-bottom: 40px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+        .nav a { color: var(--text-sec); margin-right: 20px; }
+        .nav a:hover { color: var(--text); }
+    </style>
+</head>
+<body>
+    <div class="nav">
+        <a href="/powerclaw/">← 返回首页</a>
+        <a href="/powerclaw/docs/">文档索引</a>
+    </div>
+    <article>
+u003ch1u003eOpenClaw 快速开始指南
+
+5 分钟上手 OpenClaw，让 AI 开始为你工作。
+
+u003ch2u003e1. 安装 OpenClaw
+
+u003ch3u003emacOS (Homebrew)
+
+u003cpreu003eu003ccodeu003ebash
+brew tap openclaw/tap
+brew install openclaw
+u003cpreu003eu003ccodeu003e
+
+u003ch3u003e验证安装
+
+u003cpreu003eu003ccodeu003ebash
+openclaw --version
+u003cpreu003eu003ccodeu003e
+
+u003ch2u003e2. 初始配置
+
+u003cpreu003eu003ccodeu003ebash
+u003ch1u003e启动配置向导
+openclaw configure
+
+u003ch1u003e设置工作目录
+openclaw config set workspace /path/to/your/workspace
+u003cpreu003eu003ccodeu003e
+
+u003ch2u003e3. 基础命令
+
+u003ch3u003e查看状态
+u003cpreu003eu003ccodeu003ebash
+openclaw status
+u003cpreu003eu003ccodeu003e
+
+u003ch3u003e使用 AI 助手
+u003cpreu003eu003ccodeu003ebash
+u003ch1u003e直接提问
+openclaw ask "如何自动化我的邮件回复？"
+
+u003ch1u003e执行文件
+openclaw run script.js
+u003cpreu003eu003ccodeu003e
+
+u003ch3u003e管理技能
+u003cpreu003eu003ccodeu003ebash
+u003ch1u003e列出已安装技能
+openclaw skills list
+
+u003ch1u003e安装新技能
+openclaw skills install web-search
+
+u003ch1u003e使用技能
+openclaw skills use web-search "搜索最新的 AI 新闻"
+u003cpreu003eu003ccodeu003e
+
+u003ch2u003e4. 第一个自动化任务
+
+创建一个简单的自动化脚本：
+
+u003cpreu003eu003ccodeu003ebash
+u003ch1u003e创建文件
+cat > hello.txt <> 'EOF'
+你好，我是 OpenClaw！
+EOF
+
+u003ch1u003e让 AI 处理
+openclaw ask "读取 hello.txt 并总结内容"
+u003cpreu003eu003ccodeu003e
+
+u003ch2u003e5. 进阶配置
+
+u003ch3u003e设置 API Key
+
+u003cpreu003eu003ccodeu003ebash
+u003ch1u003eOpenAI
+openclaw config set openai.api_key sk-...
+
+u003ch1u003e其他服务
+openclaw config set serpapi.api_key ...
+u003cpreu003eu003ccodeu003e
+
+u003ch3u003e配置模型
+
+u003cpreu003eu003ccodeu003ebash
+u003ch1u003e使用 GPT-4
+openclaw config set model gpt-4
+
+u003ch1u003e使用 Claude
+openclaw config set model claude-3-opus
+u003cpreu003eu003ccodeu003e
+
+u003ch2u003e6. 常用技巧
+
+u003ch3u003e技巧 1: 使用管道
+u003cpreu003eu003ccodeu003ebash
+echo "分析这段代码" | openclaw ask
+u003cpreu003eu003ccodeu003e
+
+u003ch3u003e技巧 2: 批量处理
+u003cpreu003eu003ccodeu003ebash
+openclaw batch process *.md --action "翻译为英文"
+u003cpreu003eu003ccodeu003e
+
+u003ch3u003e技巧 3: 定时任务
+u003cpreu003eu003ccodeu003ebash
+u003ch1u003e添加定时任务
+openclaw cron add "0 9 u003cemu003e u003c/emu003e *" "分析今日新闻"
+u003cpreu003eu003ccodeu003e
+
+u003ch2u003e7. 故障排除
+
+u003ch3u003e问题 1: 命令未找到
+u003cpreu003eu003ccodeu003ebash
+u003ch1u003e检查安装
+which openclaw
+
+u003ch1u003e重新安装
+brew reinstall openclaw
+u003cpreu003eu003ccodeu003e
+
+u003ch3u003e问题 2: API 错误
+u003cpreu003eu003ccodeu003ebash
+u003ch1u003e验证 API Key
+openclaw config validate
+
+u003ch1u003e查看日志
+openclaw logs
+u003cpreu003eu003ccodeu003e
+
+u003ch3u003e问题 3: 权限问题
+u003cpreu003eu003ccodeu003ebash
+u003ch1u003e修复权限
+openclaw fix-permissions
+u003cpreu003eu003ccodeu003e
+
+u003ch2u003e8. 下一步
+
+u003cliu003e📖 阅读 [完整文档](docs/)
+u003cliu003e🎯 查看 [实战案例](examples/)
+u003cliu003e🤝 加入 [社区讨论](https://github.com/openclaw/openclaw/discussions)
+
+---
+
+u003cstrongu003e恭喜！你已经完成了 OpenClaw 的入门配置。u003c/strongu003e 🎉
+    </article>
+</body>
+</html>

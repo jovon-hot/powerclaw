@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenClaw 核心概念 | PowerClaw</title>
+    <style>
+        :root { --bg: #0a0a0a; --bg-card: #161616; --text: #fff; --text-sec: #999; --border: #2a2a2a; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; max-width: 900px; margin: 0 auto; padding: 40px 20px; }
+        h1 { font-size: 2rem; margin-bottom: 30px; border-bottom: 1px solid var(--border); padding-bottom: 15px; }
+        h2 { font-size: 1.5rem; margin: 40px 0 20px; color: var(--text); }
+        h3 { font-size: 1.2rem; margin: 30px 0 15px; color: var(--text-sec); }
+        p { margin-bottom: 15px; color: var(--text-sec); }
+        ul, ol { margin: 15px 0; padding-left: 30px; color: var(--text-sec); }
+        li { margin: 8px 0; }
+        a { color: #4a9eff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        code { background: var(--bg-card); padding: 2px 8px; border-radius: 4px; font-family: monospace; font-size: 0.9em; }
+        pre { background: var(--bg-card); padding: 20px; border-radius: 8px; overflow-x: auto; margin: 20px 0; }
+        pre code { background: none; padding: 0; }
+        blockquote { border-left: 3px solid var(--text-sec); padding-left: 20px; margin: 20px 0; color: var(--text-sec); }
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        th, td { padding: 12px; text-align: left; border-bottom: 1px solid var(--border); }
+        th { color: var(--text); }
+        .nav { margin-bottom: 40px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+        .nav a { color: var(--text-sec); margin-right: 20px; }
+        .nav a:hover { color: var(--text); }
+    </style>
+</head>
+<body>
+    <div class="nav">
+        <a href="/powerclaw/">← 返回首页</a>
+        <a href="/powerclaw/docs/">文档索引</a>
+    </div>
+    <article>
+u003ch1u003eOpenClaw 核心概念
+
+理解这些核心概念，帮助你更好地使用 OpenClaw。
+
+u003ch2u003e1. 代理 (Agent)
+
+u003cstrongu003e什么是代理u003c/strongu003e
+
+代理是 OpenClaw 的核心执行单元。每个代理都有：
+u003cliu003e独立的记忆
+u003cliu003e特定的能力
+u003cliu003e可配置的行为
+
+u003cstrongu003e创建代理u003c/strongu003e
+
+u003cpreu003eu003ccodeu003ebash
+u003ch1u003e创建新代理
+openclaw agent create my-assistant
+
+u003ch1u003e配置代理
+openclaw agent config my-assistant --model gpt-4
+u003cpreu003eu003ccodeu003e
+
+u003cstrongu003e代理类型u003c/strongu003e
+
+u003ctdu003e类型u003c/tdu003e 用途 | 示例 |
+|------|------|------|
+u003ctdu003eu003cstrongu003e通用代理u003c/strongu003eu003c/tdu003e 日常任务 | 问答、写作、分析 |
+u003ctdu003eu003cstrongu003e专业代理u003c/strongu003eu003c/tdu003e 特定领域 | 代码审查、数据分析 |
+u003ctdu003eu003cstrongu003e工作流代理u003c/strongu003eu003c/tdu003e 自动化 | 定时任务、批量处理 |
+
+u003ch2u003e2. 技能 (Skills)
+
+u003cstrongu003e什么是技能u003c/strongu003e
+
+技能是 OpenClaw 的扩展模块，让 AI 能够使用外部工具。
+
+u003cstrongu003e技能架构u003c/strongu003e
+
+u003cpreu003eu003ccodeu003e
+用户请求 → 代理 → 技能系统 → 外部工具
+                ↑
+            技能选择
+            参数填充
+            结果处理
+u003cpreu003eu003ccodeu003e
+
+u003cstrongu003e内置技能u003c/strongu003e
+
+u003ctdu003e技能u003c/tdu003e 功能 | 使用场景 |
+|------|------|----------|
+u003ctdu003eu003ccodeu003eweb-searchu003c/codeu003eu003c/tdu003e 网络搜索 | 信息查询 |
+u003ctdu003eu003ccodeu003ebrowseru003c/codeu003eu003c/tdu003e 浏览器控制 | 网页操作 |
+u003ctdu003eu003ccodeu003efile-systemu003c/codeu003eu003c/tdu003e 文件操作 | 读写文件 |
+u003ctdu003eu003ccodeu003emessagingu003c/codeu003eu003c/tdu003e 消息发送 | 邮件、Slack |
+u003ctdu003eu003ccodeu003ecode-execu003c/codeu003eu003c/tdu003e 代码执行 | 运行脚本 |
+
+u003cstrongu003e技能调用示例u003c/strongu003e
+
+u003cpreu003eu003ccodeu003ejavascript
+// 在脚本中使用技能
+const result = await skills.use('web-search', {
+  query: 'OpenClaw 最新版本'
+});
+u003cpreu003eu003ccodeu003e
+
+u003ch2u003e3. 记忆系统 (Memory)
+
+u003cstrongu003e短期记忆u003c/strongu003e
+u003cliu003e当前对话上下文
+u003cliu003e临时变量
+u003cliu003e会话状态
+
+u003cstrongu003e长期记忆u003c/strongu003e
+u003cliu003e用户偏好
+u003cliu003e历史决策
+u003cliu003e学习到的知识
+
+u003cstrongu003e记忆类型u003c/strongu003e
+
+u003cpreu003eu003ccodeu003ejavascript
+// 保存到长期记忆
+memory.save({
+  key: 'user_preference',
+  value: { theme: 'dark', language: 'zh' }
+});
+
+// 读取记忆
+const pref = memory.get('user_preference');
+u003cpreu003eu003ccodeu003e
+
+u003ch2u003e4. 工作流 (Workflows)
+
+u003cstrongu003e什么是工作流u003c/strongu003e
+
+工作流是一系列自动化任务的组合。
+
+u003cstrongu003e创建工作流u003c/strongu003e
+
+u003cpreu003eu003ccodeu003eyaml
+u003ch1u003eworkflow.yaml
+name: 每日报告
+steps:
+  - name: 收集数据
+    skill: web-search
+    params:
+      query: "今日科技新闻"
+  
+  - name: 分析总结
+    agent: analyst
+    prompt: "总结新闻要点"
+  
+  - name: 发送邮件
+    skill: email-send
+    params:
+      to: "user@example.com"
+u003cpreu003eu003ccodeu003e
+
+u003cstrongu003e工作流触发器u003c/strongu003e
+
+u003cliu003eu003cstrongu003e定时触发u003c/strongu003e: 每天 9:00 执行
+u003cliu003eu003cstrongu003e事件触发u003c/strongu003e: 文件修改时执行
+u003cliu003eu003cstrongu003e手动触发u003c/strongu003e: 用户命令触发
+
+u003ch2u003e5. MCP 服务器
+
+u003cstrongu003e什么是 MCPu003c/strongu003e
+
+MCP (Model Context Protocol) 是一种标准化的 AI 工具接口。
+
+u003cstrongu003eMCP 架构u003c/strongu003e
+
+u003cpreu003eu003ccodeu003e
+┌─────────┐     ┌─────────┐     ┌─────────┐
+│  AI 模型 │────▶│ MCP 客户端│────▶│ MCP 服务器│
+└─────────┘     └─────────┘     └─────────┘
+                                      │
+                                      ▼
+                                ┌─────────┐
+                                │ 外部工具 │
+                                └─────────┘
+u003cpreu003eu003ccodeu003e
+
+u003cstrongu003e使用 MCPu003c/strongu003e
+
+u003cpreu003eu003ccodeu003ejson
+{
+  "mcpServers": {
+    "filesystem": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-filesystem"]
+    }
+  }
+}
+u003cpreu003eu003ccodeu003e
+
+u003ch2u003e6. 配置文件
+
+u003cstrongu003e全局配置u003c/strongu003e
+
+位置: u003ccodeu003e~/.openclaw/config.jsonu003c/codeu003e
+
+u003cpreu003eu003ccodeu003ejson
+{
+  "defaultModel": "gpt-4",
+  "workspace": "/Users/user/openclaw",
+  "skills": {
+    "autoInstall": true
+  },
+  "logging": {
+    "level": "info"
+  }
+}
+u003cpreu003eu003ccodeu003e
+
+u003cstrongu003e代理配置u003c/strongu003e
+
+位置: u003ccodeu003eworkspace/agents/[name]/config.jsonu003c/codeu003e
+
+u003cpreu003eu003ccodeu003ejson
+{
+  "name": "my-agent",
+  "model": "claude-3-opus",
+  "skills": ["web-search", "file-system"],
+  "memory": {
+    "type": "persistent"
+  }
+}
+u003cpreu003eu003ccodeu003e
+
+u003ch2u003e7. 安全模型
+
+u003cstrongu003e权限控制u003c/strongu003e
+
+u003cpreu003eu003ccodeu003eyaml
+permissions:
+  filesystem:
+    read: ["~/documents"]
+    write: ["~/workspace"]
+  network:
+    allowed: ["u003cemu003e.openai.com", "u003c/emu003e.google.com"]
+  execution:
+    shell: false
+    sandbox: true
+u003cpreu003eu003ccodeu003e
+
+u003cstrongu003e数据隐私u003c/strongu003e
+u003cliu003e本地优先存储
+u003cliu003e可选云同步
+u003cliu003e端到端加密
+
+u003ch2u003e8. 最佳实践
+
+u003ch3u003e1. 代理设计
+u003cliu003e单一职责原则
+u003cliu003e明确的输入输出
+u003cliu003e可复用的技能
+
+u003ch3u003e2. 错误处理
+u003cpreu003eu003ccodeu003ejavascript
+try {
+  const result = await riskyOperation();
+} catch (error) {
+  // 自动重试
+  await retry(operation, { maxAttempts: 3 });
+}
+u003cpreu003eu003ccodeu003e
+
+u003ch3u003e3. 性能优化
+u003cliu003e缓存常用数据
+u003cliu003e批量处理请求
+u003cliu003e异步执行
+
+u003ch3u003e4. 可观测性
+u003cliu003e记录所有操作
+u003cliu003e监控执行时间
+u003cliu003e追踪错误率
+
+---
+
+理解这些概念后，你可以构建复杂的 AI 自动化系统！
+    </article>
+</body>
+</html>
