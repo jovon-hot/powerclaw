@@ -11,6 +11,18 @@ title: "博客 | PowerClaw"
 
 ## 最新文章
 
+### [OpenClaw安全危机全解析：从CVE漏洞到ClawHavoc攻击](./posts/openclaw-security-crisis)
+
+**发布时间**: 2026-03-03
+
+CVE-2026-25253漏洞、ClawHavoc供应链攻击...
+
+过去两周安全事件频发，这份防护指南帮你应对。
+
+**阅读全文 →**
+
+---
+
 ### [我用OpenClaw搞了个AI工作流，每天省2小时](./posts/ai-workflow-pain-points)
 
 **发布时间**: 2026-03-03
