@@ -2,6 +2,13 @@
 
 OpenClaw 的强大之处在于丰富的技能生态系统。以下是经过验证的精品技能推荐。
 
+> 📚 **深度精选专题**
+> - [🌟 20个必装Skill精选](skills-curated-top20.md) - 浏览器、办公、研究、AI增强
+> - [💻 开发者特辑](skills-developer-edition.md) - Git & GitHub + Coding Agents (18个)
+> - [🤖 AI & LLMs特辑](skills-ai-llms-edition.md) - AI工具与大模型接口 (20个)
+> 
+> **累计精选**: 58个高价值Skill | **数据来源**: awesome-openclaw-skills (5,494个)
+
 ---
 
 ## 🌟 必装技能
