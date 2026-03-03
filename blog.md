@@ -11,6 +11,18 @@ title: "博客 | PowerClaw"
 
 ## 最新文章
 
+### [MCP服务器完全指南：给OpenClaw装上"万能插件"](./posts/mcp-server-guide)
+
+**发布时间**: 2026-03-04
+
+MCP让OpenClaw连接任何外部服务：数据库、浏览器、API...
+
+10个必备MCP服务器推荐 + 自建入门教程。
+
+**阅读全文 →**
+
+---
+
 ### [OpenClaw安全危机全解析：从CVE漏洞到ClawHavoc攻击](./posts/openclaw-security-crisis)
 
 **发布时间**: 2026-03-03

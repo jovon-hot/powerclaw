@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PowerClaw - OpenClaw实战技巧与AI Agent资源导航站</title>
+    <meta name="description" content="PowerClaw提供OpenClaw实战教程、技能评测、MCP服务器指南，助你掌握AI自动化。">
+    <meta name="keywords" content="OpenClaw, AI Agent, 自动化, MCP, 教程">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="PowerClaw - OpenClaw实战技巧与AI Agent资源导航站">
+    <meta property="og:description" content="PowerClaw提供OpenClaw实战教程、技能评测、MCP服务器指南，助你掌握AI自动化。">
+    <meta property="og:image" content="https://adai-tools.github.io/powerclaw/og-image.png">
+    <meta property="og:url" content="https://adai-tools.github.io/powerclaw/">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="PowerClaw - OpenClaw实战技巧">
+    <meta name="twitter:description" content="OpenClaw实战教程、技能评测、MCP服务器指南">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #7c3aed;
+            --bg: #ffffff;
+            --bg-alt: #f8fafc;
+            --text: #1e293b;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+            --shadow: 0 1px 3px rgba(0,0,0,0.1);
+            --shadow-lg: 0 10px 40px rgba(0,0,0,0.1);
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background: var(--bg);
+        }
+        
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 64px;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary);
+            text-decoration: none;
+        }
+        
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 8px;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            padding: 8px 16px;
+            color: var(--text-muted);
+            text-decoration: none;
+            border-radius: 6px;
+            transition: all 0.2s;
+            font-size: 0.95rem;
+        }
+        
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--primary);
+            background: rgba(37, 99, 235, 0.1);
+        }
+        
+        .nav-actions {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+        
+        .btn {
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: none;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: var(--primary-dark);
+        }
+        
+        .btn-secondary {
+            background: var(--bg-alt);
+            color: var(--text);
+            border: 1px solid var(--border);
+        }
+        
+        .btn-secondary:hover {
+            background: var(--border);
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 140px 20px 80px;
+            background: linear-gradient(135deg, var(--bg) 0%, var(--bg-alt) 100%);
+            text-align: center;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.2;
+        }
+        
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .hero-actions {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .hero .btn {
+            padding: 14px 28px;
+            font-size: 1.1rem;
+        }
+        
+        /* Features Grid */
+        .features {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 16px;
+        }
+        
+        .section-header p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+        }
+        
+        .feature-card {
+            padding: 32px;
+            border-radius: 16px;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            transition: all 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .feature-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.75rem;
+            margin-bottom: 20px;
+        }
+        
+        .feature-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 12px;
+        }
+        
+        .feature-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        
+        /* Stats Section */
+        .stats {
+            padding: 60px 20px;
+            background: var(--bg-alt);
+        }
+        
+        .stats-grid {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            text-align: center;
+        }
+        
+        .stat-item h3 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+        
+        .stat-item p {
+            color: var(--text-muted);
+        }
+        
+        /* Latest Content */
+        .latest-content {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .content-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 40px;
+        }
+        
+        .article-list {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+        
+        .article-card {
+            padding: 24px;
+            border-radius: 12px;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            transition: all 0.2s;
+        }
+        
+        .article-card:hover {
+            border-color: var(--primary);
+        }
+        
+        .article-meta {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 12px;
+            font-size: 0.875rem;
+            color: var(--text-muted);
+        }
+        
+        .article-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 12px;
+        }
+        
+        .article-card h3 a {
+            color: var(--text);
+            text-decoration: none;
+        }
+        
+        .article-card h3 a:hover {
+            color: var(--primary);
+        }
+        
+        .article-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        
+        .tags {
+            display: flex;
+            gap: 8px;
+            margin-top: 16px;
+            flex-wrap: wrap;
+        }
+        
+        .tag {
+            padding: 4px 12px;
+            background: var(--bg-alt);
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+        
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+        
+        .sidebar-card {
+            padding: 24px;
+            border-radius: 12px;
+            background: var(--bg-alt);
+        }
+        
+        .sidebar-card h4 {
+            margin-bottom: 16px;
+            font-size: 1.1rem;
+        }
+        
+        .skill-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .skill-item:last-child {
+            border-bottom: none;
+        }
+        
+        .skill-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            background: var(--bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .skill-item div h5 {
+            font-size: 0.95rem;
+            margin-bottom: 4px;
+        }
+        
+        .skill-item div p {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+        
+        /* CTA Section */
+        .cta {
+            padding: 100px 20px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            text-align: center;
+            color: white;
+        }
+        
+        .cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .cta p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .cta .btn-primary {
+            background: white;
+            color: var(--primary);
+        }
+        
+        /* Footer */
+        footer {
+            padding: 60px 20px 30px;
+            background: var(--text);
+            color: white;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-section h4 {
+            margin-bottom: 16px;
+            font-size: 1.1rem;
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .footer-section li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-section a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        
+        .footer-section a:hover {
+            color: white;
+        }
+        
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+            color: rgba(255,255,255,0.5);
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 968px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 640px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/" class="logo">
+                <div class="logo-icon">🦞</div>
+                <span>PowerClaw</span>
+            </a>
+            
+            <ul class="nav-links">
+                <li><a href="/tutorials">教程</a></li>
+                <li><a href="/skills">技能市场</a></li>
+                <li><a href="/mcp">MCP生态</a></li>
+                <li><a href="/blog" class="active">博客</a></li>
+                <li><a href="/products">产品</a></li>
+            </ul>
+            
+            <div class="nav-actions">
+                <a href="https://github.com/jovon-hot/powerclaw" class="btn btn-secondary" target="_blank">
+                    GitHub
+                </a>
+                <a href="/getting-started" class="btn btn-primary">开始使用</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>让AI为你工作</h1>
+            <p>PowerClaw提供OpenClaw实战教程、技能评测、MCP服务器指南，助你掌握AI自动化，每天节省2小时。</p>
+            <div class="hero-actions">
+                <a href="/getting-started" class="btn btn-primary">快速开始 →</a>
+                <a href="/blog" class="btn btn-secondary">浏览教程</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="features">
+        <div class="section-header">
+            <h2>全方位掌握OpenClaw</h2>
+            <p>从入门到精通，从工具到生态</p>
+        </div>
+        
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon" style="background: rgba(37, 99, 235, 0.1);">📚</div>
+                <h3>实战教程</h3>
+                <p>从零开始学习OpenClaw，包含新手入门、进阶技巧、企业部署全流程指南。</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon" style="background: rgba(124, 58, 237, 0.1);">🛠️</div>
+                <h3>技能市场</h3>
+                <p>评测和推荐最佳OpenClaw技能，助你快速找到适合自己的工具。</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon" style="background: rgba(16, 185, 129, 0.1);">🔌</div>
+                <h3>MCP生态</h3>
+                <p>MCP服务器完全指南，连接数据库、浏览器、API，扩展AI无限可能。</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon" style="background: rgba(245, 158, 11, 0.1);">📊</div>
+                <h3>案例分享</h3>
+                <p>真实场景下的OpenClaw应用案例，日报自动生成、投资组合监控等。</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon" style="background: rgba(239, 68, 68, 0.1);">🚀</div>
+                <h3>DeFi工具</h3>
+                <p>自动复利机器人、Gas优化器、空投猎人，24/7自动赚钱。</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon" style="background: rgba(6, 182, 212, 0.1);">💼</div>
+                <h3>企业服务</h3>
+                <p>OpenClaw部署咨询、团队培训、定制开发，助力企业AI转型。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="stats">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <h3>30+</h3>
+                <p>实战教程</p>
+            </div>
+            <div class="stat-item">
+                <h3>41</h3>
+                <p>精选技能</p>
+            </div>
+            <div class="stat-item">
+                <h3>200+</h3>
+                <p>MCP服务器</p>
+            </div>
+            <div class="stat-item">
+                <h3>2h</h3>
+                <p>日均节省</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Latest Content -->
+    <section class="latest-content">
+        <div class="section-header">
+            <h2>最新内容</h2>
+            <p>每周更新，紧跟OpenClaw生态发展</p>
+        </div>
+        
+        <div class="content-grid">
+            <div class="article-list">
+                <article class="article-card">
+                    <div class="article-meta">
+                        <span>2026-03-04</span>
+                        <span>教程</span>
+                    </div>
+                    <h3><a href="/blog/posts/mcp-server-guide">MCP服务器完全指南：给OpenClaw装上"万能插件"</a></h3>
+                    <p>MCP让OpenClaw连接任何外部服务：数据库、浏览器、API...10个必备MCP服务器推荐 + 自建入门教程。</p>
+                    <div class="tags">
+                        <span class="tag">MCP</span>
+                        <span class="tag">进阶</span>
+                        <span class="tag">教程</span>
+                    </div>
+                </article>
+                
+                <article class="article-card">
+                    <div class="article-meta">
+                        <span>2026-03-03</span>
+                        <span>安全</span>
+                    </div>
+                    <h3><a href="/blog/posts/openclaw-security-crisis">OpenClaw安全危机全解析：从CVE漏洞到ClawHavoc攻击</a></h3>
+                    <p>CVE-2026-25253漏洞、ClawHavoc供应链攻击...过去两周安全事件频发，这份防护指南帮你应对。</p>
+                    <div class="tags">
+                        <span class="tag">安全</span>
+                        <span class="tag">OpenClaw</span>
+                        <span class="tag">CVE</span>
+                    </div>
+                </article>
+                
+                <article class="article-card">
+                    <div class="article-meta">
+                        <span>2026-03-03</span>
+                        <span>案例</span>
+                    </div>
+                    <h3><a href="/blog/posts/ai-workflow-pain-points">我用OpenClaw搞了个AI工作流，每天省2小时</a></h3>
+                    <p>之前每天花2小时在重复工作上：回邮件、发推文、整理会议纪要...折腾了一周AI自动化，疯狂报错，差点放弃。</p>
+                    <div class="tags">
+                        <span class="tag">案例</span>
+                        <span class="tag">自动化</span>
+                        <span class="tag">效率</span>
+                    </div>
+                </article>
+            </div>
+            
+            <aside class="sidebar">
+                <div class="sidebar-card">
+                    <h4>🔥 热门技能</h4>
+                    <div class="skill-item">
+                        <div class="skill-icon">🌐</div>
+                        <div>
+                            <h5>web-search</h5>
+                            <p>网络搜索</p>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-icon">📧</div>
+                        <div>
+                            <h5>himalaya</h5>
+                            <p>邮件管理</p>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-icon">📝</div>
+                        <div>
+                            <h5>obsidian</h5>
+                            <p>笔记管理</p>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-icon">🐦</div>
+                        <div>
+                            <h5>xurl</h5>
+                            <p>Twitter API</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="sidebar-card">
+                    <h4>📮 订阅更新</h4>
+                    <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 16px;">每周一封，精选OpenClaw技巧和生态动态</p>
+                    <form style="display: flex; gap: 8px;">
+                        <input type="email" placeholder="your@email.com" style="flex: 1; padding: 10px 14px; border: 1px solid var(--border); border-radius: 6px; font-size: 0.9rem;">
+                        <button type="submit" class="btn btn-primary" style="padding: 10px 16px;">订阅</button>
+                    </form>
+                </div>
+            </aside>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta">
+        <h2>准备好让AI为你工作了吗？</h2>
+        <p>加入数千名OpenClaw用户，每天节省2小时，专注于真正重要的事情。</p>
+        <a href="/getting-started" class="btn btn-primary" style="font-size: 1.1rem; padding: 16px 32px;">立即开始 →</a>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>PowerClaw</h4>
+                <p style="color: rgba(255,255,255,0.7); font-size: 0.9rem; line-height: 1.6;">OpenClaw实战技巧与AI Agent资源导航站，助你掌握AI自动化。</p>
+            </div>
+            
+            <div class="footer-section">
+                <h4>学习</h4>
+                <ul>
+                    <li><a href="/tutorials">教程中心</a></li>
+                    <li><a href="/blog">博客</a></li>
+                    <li><a href="/docs">文档</a></li>
+                    <li><a href="/cases">案例</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h4>资源</h4>
+                <ul>
+                    <li><a href="/skills">技能市场</a></li>
+                    <li><a href="/mcp">MCP生态</a></li>
+                    <li><a href="/products">产品</a></li>
+                    <li><a href="/services">服务</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h4>社区</h4>
+                <ul>
+                    <li><a href="https://github.com/jovon-hot/powerclaw" target="_blank">GitHub</a></li>
+                    <li><a href="https://x.com/zhengliangli4" target="_blank">Twitter</a></li>
+                    <li><a href="#">Discord</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>© 2026 PowerClaw. 基于 MIT 协议开源。</p>
+        </div>
+    </footer>
+</body>
+</html>
