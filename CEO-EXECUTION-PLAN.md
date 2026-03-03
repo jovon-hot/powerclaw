@@ -41,7 +41,7 @@
 **输出**: 内容资产库
 
 ### Phase 4: 落地方案
-**上架到 https://adai-tools.github.io/powerclaw**:
+**上架到 https://jovon-hot.github.io/powerclaw/**:
 - /skills/ 页面更新
 - 新增分类导航
 - 每个skill独立页面
@@ -180,13 +180,11 @@
 
 | 日期 | 任务 | 状态 | 产出 |
 |------|------|------|------|
-| 03/03 | 抓取skills数据 | ✅ 完成 | 获取5个分类共2,283个skill |
-| 03/03 | 分析Top 20 | ✅ 完成 | skills-curated-top20.md |
-| 03/03 | 开发者特辑 | ✅ 完成 | skills-developer-edition.md (18个) |
-| 03/03 | 生成推文内容 | ✅ 完成 | tweets-2026-03-03.md (5条) |
-| 03/03 | 创建监控脚本 | ✅ 完成 | monitor-skills.sh + daily-publish.sh |
-| 03/03 | CEO战略蓝图 | ✅ 完成 | CEO-STRATEGY-BLUEPRINT.md |
-| 03/03 | 发布推文 | ⏳ 待执行 | 等待Twitter就绪 |
+| 03/03 | 闭环1: 通用精选 | ✅ 完成 | 20个Skill, 7,338字 |
+| 03/03 | 闭环2: 开发者特辑 | ✅ 完成 | 18个Skill, 6,729字 |
+| 03/03 | 闭环3: AI工具特辑 | ✅ 完成 | 20个Skill, 6,846字 |
+| 03/03 | 闭环4: 网站上线 | ✅ 完成 | GitHub Pages已推送 |
+| 03/03 | 闭环5: 社媒推广 | ⏳ 待执行 | 5条推文素材就绪 |
 
 ---
 

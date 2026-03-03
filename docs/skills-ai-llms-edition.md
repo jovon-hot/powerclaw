@@ -383,4 +383,4 @@ openclaw exec "使用mh-openai-whisper转录今天的会议录音，生成会议
 ---
 
 *PowerClaw - AI工具导航站* 🦞  
-👉 https://adai-tools.github.io/powerclaw
+👉 https://jovon-hot.github.io/powerclaw/

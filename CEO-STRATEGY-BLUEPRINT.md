@@ -220,7 +220,7 @@
 ### 网站
 - **托管**: GitHub Pages
 - **框架**: 纯HTML/CSS/JS (初期)
-- **域名**: https://adai-tools.github.io/powerclaw
+- **域名**: https://jovon-hot.github.io/powerclaw/
 
 ### 社媒
 - **主阵地**: Twitter/X
