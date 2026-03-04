@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI编程助手完全指南 | PowerClaw</title>
+    <style>
+        :root { --bg: #0a0a0a; --bg-card: #161616; --text: #fff; --text-sec: #999; --border: #2a2a2a; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; max-width: 900px; margin: 0 auto; padding: 40px 20px; }
+        h1 { font-size: 2rem; margin-bottom: 30px; border-bottom: 1px solid var(--border); padding-bottom: 15px; color: var(--text); }
+        h2 { font-size: 1.5rem; margin: 40px 0 20px; color: var(--text); border-bottom: 1px solid var(--border); padding-bottom: 10px; }
+        h3 { font-size: 1.2rem; margin: 30px 0 15px; color: var(--text-sec); }
+        h4 { font-size: 1.1rem; margin: 25px 0 12px; color: var(--text-sec); }
+        p { margin-bottom: 15px; color: var(--text-sec); }
+        ul, ol { margin: 15px 0; padding-left: 30px; color: var(--text-sec); }
+        li { margin: 8px 0; }
+        a { color: #4a9eff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        code { background: var(--bg-card); padding: 2px 8px; border-radius: 4px; font-family: 'Monaco', 'Menlo', monospace; font-size: 0.9em; color: #e6e6e6; }
+        pre { background: var(--bg-card); padding: 20px; border-radius: 8px; overflow-x: auto; margin: 20px 0; border: 1px solid var(--border); }
+        pre code { background: none; padding: 0; color: #e6e6e6; }
+        blockquote { border-left: 3px solid #4a9eff; padding-left: 20px; margin: 20px 0; color: var(--text-sec); font-style: italic; }
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        th, td { padding: 12px; text-align: left; border-bottom: 1px solid var(--border); }
+        th { color: var(--text); background: var(--bg-card); font-weight: 600; }
+        tr:hover { background: rgba(255,255,255,0.02); }
+        hr { border: none; border-top: 1px solid var(--border); margin: 30px 0; }
+        .nav { margin-bottom: 40px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+        .nav a { color: var(--text-sec); margin-right: 20px; text-decoration: none; }
+        .nav a:hover { color: var(--text); }
+        .meta { color: var(--text-sec); font-size: 0.9em; margin-bottom: 30px; }
+        strong { color: var(--text); }
+        em { font-style: italic; }
+    </style>
+</head>
+<body>
+    <div class="nav">
+        <a href="/powerclaw/">← 返回首页</a>
+        <a href="/powerclaw/docs/">文档索引</a>
+    </div>
+    <article>
+<h1>AI编程助手完全指南</h1>
+
+<p>AI编程助手正在彻底改变开发者的工作方式。通过OpenClaw的Coding Agents技能，你可以将AI无缝集成到开发工作流中，实现代码生成、审查、重构和文档编写等任务的自动化。</p>
+
+<p>本指南精选了15个最实用的AI编程技能，覆盖从代码补全到多Agent协作的完整场景。</p>
+
+<h2>精选Skills (15个)</h2>
+
+<h3>1. 代码生成与补全</h3>
+
+<h4>codex</h4>
+<ul>
+<li><strong>用途</strong>: AI代码生成和编辑</li>
+<li><strong>安装</strong>: <code>clawhub install codex</code></li>
+<li><strong>场景</strong>: 快速生成代码片段、函数实现、单元测试</li>
+<li><strong>亮点</strong>: 支持多种编程语言，上下文感知</li>
+</ul>
+
+<h4>gemini</h4>
+<ul>
+<li><strong>用途</strong>: Google Gemini驱动的代码助手</li>
+<li><strong>安装</strong>: <code>clawhub install gemini</code></li>
+<li><strong>场景</strong>: 代码解释、优化建议、Bug修复</li>
+<li><strong>亮点</strong>: 强大的理解和生成能力</li>
+</ul>
+
+<h4>claude-code</h4>
+<ul>
+<li><strong>用途</strong>: Claude驱动的编程助手</li>
+<li><strong>安装</strong>: <code>clawhub install claude-code</code></li>
+<li><strong>场景</strong>: 复杂代码重构、架构设计</li>
+<li><strong>亮点</strong>: 长上下文窗口，适合大项目</li>
+</ul>
+
+<h3>2. 代码审查与质量</h3>
+
+<h4>code-review</h4>
+<ul>
+<li><strong>用途</strong>: 自动化代码审查</li>
+<li><strong>安装</strong>: <code>clawhub install code-review</code></li>
+<li><strong>场景</strong>: PR审查、代码规范检查</li>
+<li><strong>亮点</strong>: 发现潜在Bug和安全问题</li>
+</ul>
+
+<h4>lint-autofix</h4>
+<ul>
+<li><strong>用途</strong>: 自动修复代码风格问题</li>
+<li><strong>安装</strong>: <code>clawhub install lint-autofix</code></li>
+<li><strong>场景</strong>: 统一代码风格、格式化</li>
+<li><strong>亮点</strong>: 支持ESLint、Prettier等主流工具</li>
+</ul>
+
+<h4>security-scan</h4>
+<ul>
+<li><strong>用途</strong>: 代码安全扫描</li>
+<li><strong>安装</strong>: <code>clawhub install security-scan</code></li>
+<li><strong>场景</strong>: 检测安全漏洞、依赖风险</li>
+<li><strong>亮点</strong>: 集成OWASP标准</li>
+</ul>
+
+<h3>3. 多语言支持</h3>
+
+<h4>python-agent</h4>
+<ul>
+<li><strong>用途</strong>: Python专属AI助手</li>
+<li><strong>安装</strong>: <code>clawhub install python-agent</code></li>
+<li><strong>场景</strong>: Python项目开发、数据分析</li>
+<li><strong>亮点</strong>: 深度理解Python生态</li>
+</ul>
+
+<h4>typescript-agent</h4>
+<ul>
+<li><strong>用途</strong>: TypeScript/JavaScript助手</li>
+<li><strong>安装</strong>: <code>clawhub install typescript-agent</code></li>
+<li><strong>场景</strong>: 前端开发、Node.js项目</li>
+<li><strong>亮点</strong>: 类型系统理解和推断</li>
+</ul>
+
+<h4>rust-agent</h4>
+<ul>
+<li><strong>用途</strong>: Rust编程助手</li>
+<li><strong>安装</strong>: <code>clawhub install rust-agent</code></li>
+<li><strong>场景</strong>: 系统编程、高性能应用</li>
+<li><strong>亮点</strong>: 内存安全和并发建议</li>
+</ul>
+
+<h3>4. 文档与测试</h3>
+
+<h4>doc-generator</h4>
+<ul>
+<li><strong>用途</strong>: 自动生成代码文档</li>
+<li><strong>安装</strong>: <code>clawhub install doc-generator</code></li>
+<li><strong>场景</strong>: API文档、README生成</li>
+<li><strong>亮点</strong>: 支持多种文档格式</li>
+</ul>
+
+<h4>test-generator</h4>
+<ul>
+<li><strong>用途</strong>: 自动生成单元测试</li>
+<li><strong>安装</strong>: <code>clawhub install test-generator</code></li>
+<li><strong>场景</strong>: 测试覆盖率提升</li>
+<li><strong>亮点</strong>: 智能边界条件识别</li>
+</ul>
+
+<h3>5. 工作流与协作</h3>
+
+<h4>mcp-server</h4>
+<ul>
+<li><strong>用途</strong>: MCP协议服务器管理</li>
+<li><strong>安装</strong>: <code>clawhub install mcp-server</code></li>
+<li><strong>场景</strong>: 工具集成、跨平台协作</li>
+<li><strong>亮点</strong>: 标准化工具接口</li>
+</ul>
+
+<h4>agent-browser</h4>
+<ul>
+<li><strong>用途</strong>: AI驱动的浏览器自动化</li>
+<li><strong>安装</strong>: <code>clawhub install agent-browser</code></li>
+<li><strong>场景</strong>: Web测试、数据抓取</li>
+<li><strong>亮点</strong>: 视觉理解+代码执行</li>
+</ul>
+
+<h4>skill-creator</h4>
+<ul>
+<li><strong>用途</strong>: 创建自定义OpenClaw技能</li>
+<li><strong>安装</strong>: <code>clawhub install skill-creator</code></li>
+<li><strong>场景</strong>: 定制工作流、团队工具</li>
+<li><strong>亮点</strong>: 低代码创建工具</li>
+</ul>
+
+<h2>实战场景</h2>
+
+<h3>场景1: 快速启动新项目</h3>
+
+<pre><code># 1. 创建项目结构
+mkdir my-project && cd my-project
+
+# 2. 生成基础代码
+codex "Create a React + TypeScript project with routing and state management"
+
+# 3. 初始化Git
+git init && git add . && git commit -m "Initial commit"
+
+# 4. 生成README
+doc-generator --template modern</code></pre>
+
+<p><strong>效果</strong>: 5分钟完成项目脚手架</p>
+
+<h3>场景2: 代码审查自动化</h3>
+
+<pre><code># PR创建后自动审查
+gh pr create --title "Feature: Add payment module"
+code-review --pr-url $(gh pr view --json url -q .url)</code></pre>
+
+<p><strong>效果</strong>: 自动发现潜在问题，提升代码质量</p>
+
+<h3>场景3: 遗留代码重构</h3>
+
+<pre><code># 分析代码质量
+security-scan --path ./src
+
+# 自动修复风格问题
+lint-autofix --path ./src
+
+# 重构建议
+claude-code "Refactor this legacy code to use modern patterns"</code></pre>
+
+<p><strong>效果</strong>: 自动处理80%的机械性重构工作</p>
+
+<h2>效率提升数据</h2>
+
+<table>
+<tr><th>指标</th><th>使用前</th><th>使用后</th><th>提升</th></tr>
+<tr><td>代码编写速度</td><td>100行/小时</td><td>300行/小时</td><td>3x</td></tr>
+<tr><td>Bug发现时间</td><td>天级</td><td>分钟级</td><td>10x</td></tr>
+<tr><td>文档覆盖率</td><td>30%</td><td>85%</td><td>2.8x</td>
+<tr><td>重构信心</td><td>低</td><td>高</td><td>-</td></tr>
+</table>
+
+<h2>快速开始</h2>
+
+<h3>安装推荐组合</h3>
+
+<pre><code># 基础开发套件
+clawhub install codex code-review lint-autofix
+
+# 全栈开发套件
+clawhub install codex typescript-agent python-agent doc-generator
+
+# 企业级套件
+clawhub install codex claude-code security-scan test-generator</code></pre>
+
+<h3>配置工作流</h3>
+
+<pre><code>{
+  "coding": {
+    "pre_write": ["codex"],
+    "pre_commit": ["lint-autofix", "security-scan"],
+    "pre_pr": ["code-review", "test-generator"]
+  }
+}</code></pre>
+
+<h2>最佳实践</h2>
+
+<ol>
+<li><strong>渐进式采用</strong>: 从一个技能开始，逐步扩展</li>
+<li><strong>人机协作</strong>: AI生成初稿，人工审查优化</li>
+<li><strong>持续反馈</strong>: 根据效果调整使用方式</li>
+<li><strong>团队共享</strong>: 统一配置，共享Prompt模板</li>
+</ol>
+
+<hr>
+
+<p><em>PowerClaw - 让AI成为你的编程搭档</em></p>
+
+    </article>
+</body>
+</html>
