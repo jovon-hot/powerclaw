@@ -3,9 +3,6 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [ main, master ]
-  schedule:
-    # 每天UTC时间06:00自动部署 (对应PST 22:00 / 北京时间14:00)
-    - cron: '0 6 * * *'
   workflow_dispatch:
 
 permissions:
@@ -18,7 +15,10 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  build:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
@@ -27,25 +27,11 @@ jobs:
     - name: Setup Pages
       uses: actions/configure-pages@v4
       
-    - name: Build site
-      run: |
-        # 复制index.html作为根页面
-        cp index.html _site/index.html || true
-        # 复制所有内容到_site
-        find . -type f \( -name "*.html" -o -name "*.md" -o -name "*.css" -o -name "*.js" \) -not -path "./_site/*" -not -path "./.git/*" -exec cp --parents {} _site/ \;
-        
     - name: Upload artifact
       uses: actions/upload-pages-artifact@v3
       with:
-        path: _site
-
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
+        path: .
+        
     - name: Deploy to GitHub Pages
       id: deployment
       uses: actions/deploy-pages@v4
