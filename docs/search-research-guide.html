@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>搜索研究完全指南 | PowerClaw</title>
+    <style>
+        :root { --bg: #0a0a0a; --bg-card: #161616; --text: #fff; --text-sec: #999; --border: #2a2a2a; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; max-width: 900px; margin: 0 auto; padding: 40px 20px; }
+        h1 { font-size: 2rem; margin-bottom: 30px; border-bottom: 1px solid var(--border); padding-bottom: 15px; color: var(--text); }
+        h2 { font-size: 1.5rem; margin: 40px 0 20px; color: var(--text); border-bottom: 1px solid var(--border); padding-bottom: 10px; }
+        h3 { font-size: 1.2rem; margin: 30px 0 15px; color: var(--text-sec); }
+        h4 { font-size: 1.1rem; margin: 25px 0 12px; color: var(--text-sec); }
+        p { margin-bottom: 15px; color: var(--text-sec); }
+        ul, ol { margin: 15px 0; padding-left: 30px; color: var(--text-sec); }
+        li { margin: 8px 0; }
+        a { color: #4a9eff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        code { background: var(--bg-card); padding: 2px 8px; border-radius: 4px; font-family: 'Monaco', 'Menlo', monospace; font-size: 0.9em; color: #e6e6e6; }
+        pre { background: var(--bg-card); padding: 20px; border-radius: 8px; overflow-x: auto; margin: 20px 0; border: 1px solid var(--border); }
+        pre code { background: none; padding: 0; color: #e6e6e6; }
+        blockquote { border-left: 3px solid #4a9eff; padding-left: 20px; margin: 20px 0; color: var(--text-sec); font-style: italic; }
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        th, td { padding: 12px; text-align: left; border-bottom: 1px solid var(--border); }
+        th { color: var(--text); background: var(--bg-card); font-weight: 600; }
+        tr:hover { background: rgba(255,255,255,0.02); }
+        hr { border: none; border-top: 1px solid var(--border); margin: 30px 0; }
+        .nav { margin-bottom: 40px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+        .nav a { color: var(--text-sec); margin-right: 20px; text-decoration: none; }
+        .nav a:hover { color: var(--text); }
+        .meta { color: var(--text-sec); font-size: 0.9em; margin-bottom: 30px; }
+        strong { color: var(--text); }
+        em { font-style: italic; }
+    </style>
+</head>
+<body>
+    <div class="nav">
+        <a href="/powerclaw/">← 返回首页</a>
+        <a href="/powerclaw/docs/">文档索引</a>
+    </div>
+    <article>
+<h1>搜索研究完全指南</h1>
+
+<p>在信息爆炸的时代，高效获取和处理信息是核心竞争力。OpenClaw提供了一套完整的搜索研究工具集，让AI帮你完成信息搜集、分析、总结的全过程。</p>
+
+<h2>核心能力矩阵</h2>
+
+<table>
+<tr><th>能力</th><th>Skills</th><th>适用场景</th></tr>
+<tr><td>网络搜索</td><td>web_search, web_fetch</td><td>快速获取网络信息</td></tr>
+<tr><td>浏览器自动化</td><td>browser, agent-browser</td><td>复杂网页交互、数据抓取</td></tr>
+<tr><td>内容总结</td><td>summarize, oracle</td><td>长文/视频/播客总结</td></tr>
+<tr><td>文档分析</td><td>pdf, image</td><td>PDF、图片内容提取</td></tr>
+<tr><td>趋势监控</td><td>blogwatcher, twitter-automation</td><td>行业动态追踪</td></tr>
+<tr><td>知识管理</td><td>obsidian, bear-notes</td><td>研究成果整理</td></tr>
+</table>
+
+<h2>精选Skills (18个)</h2>
+
+<h3>1. 信息搜集</h3>
+
+<h4>web_search</h4>
+<ul>
+<li><strong>用途</strong>: 网络搜索，获取最新信息</li>
+<li><strong>安装</strong>: <code>clawhub install web_search</code></li>
+<li><strong>场景</strong>: 市场调研、竞品分析、技术调研</li>
+<li><strong>亮点</strong>: 支持多引擎、时间筛选</li>
+</ul>
+
+<h4>web_fetch</h4>
+<ul>
+<li><strong>用途</strong>: 提取网页正文内容</li>
+<li><strong>安装</strong>: <code>clawhub install web_fetch</code></li>
+<li><strong>场景</strong>: 文章存档、内容分析</li>
+<li><strong>亮点</strong>: 自动去广告、格式化输出</li>
+</ul>
+
+<h4>browser</h4>
+<ul>
+<li><strong>用途</strong>: 浏览器自动化</li>
+<li><strong>安装</strong>: <code>clawhub install browser</code></li>
+<li><strong>场景</strong>: 复杂网页操作、表单填写</li>
+<li><strong>亮点</strong>: 支持JavaScript渲染</li>
+</ul>
+
+<h4>agent-browser</h4>
+<ul>
+<li><strong>用途</strong>: AI驱动的浏览器代理</li>
+<li><strong>安装</strong>: <code>clawhub install agent-browser</code></li>
+<li><strong>场景</strong>: 智能网页浏览、数据抓取</li>
+<li><strong>亮点</strong>: AI决策浏览路径</li>
+</ul>
+
+<h3>2. 学术研究</h3>
+
+<h4>summarize</h4>
+<ul>
+<li><strong>用途</strong>: 内容自动总结</li>
+<li><strong>安装</strong>: <code>clawhub install summarize</code></li>
+<li><strong>场景</strong>: 论文速读、会议纪要</li>
+<li><strong>亮点</strong>: 支持多种格式，提取关键信息</li>
+</ul>
+
+<h4>oracle</h4>
+<ul>
+<li><strong>用途</strong>: 提示词+文件打包</li>
+<li><strong>安装</strong>: <code>clawhub install oracle</code></li>
+<li><strong>场景</strong>: 复杂查询、批量文件分析</li>
+<li><strong>亮点</strong>: 高效处理大量上下文</li>
+</ul>
+
+<h4>pdf</h4>
+<ul>
+<li><strong>用途</strong>: PDF文档分析</li>
+<li><strong>安装</strong>: <code>clawhub install pdf</code></li>
+<li><strong>场景</strong>: 论文阅读、报告分析</li>
+<li><strong>亮点</strong>: 提取文本、表格、图片</li>
+</ul>
+
+<h4>image</h4>
+<ul>
+<li><strong>用途</strong>: 图片分析和OCR</li>
+<li><strong>安装</strong>: <code>clawhub install image</code></li>
+<li><strong>场景</strong>: 图表解读、截图分析</li>
+<li><strong>亮点</strong>: 视觉理解+文字提取</li>
+</ul>
+
+<h3>3. 趋势监控</h3>
+
+<h4>blogwatcher</h4>
+<ul>
+<li><strong>用途</strong>: RSS/博客监控</li>
+<li><strong>安装</strong>: <code>clawhub install blogwatcher</code></li>
+<li><strong>场景</strong>: 行业动态、竞品追踪</li>
+<li><strong>亮点</strong>: 自动聚合、关键词过滤</li>
+</ul>
+
+<h4>twitter-automation</h4>
+<ul>
+<li><strong>用途</strong>: Twitter/X自动化</li>
+<li><strong>安装</strong>: <code>clawhub install twitter-automation</code></li>
+<li><strong>场景</strong>: 社媒监控、趋势分析</li>
+<li><strong>亮点</strong>: 话题追踪、情感分析</li>
+</ul>
+
+<h4>github</h4>
+<ul>
+<li><strong>用途</strong>: GitHub信息获取</li>
+<li><strong>安装</strong>: <code>clawhub install github</code></li>
+<li><strong>场景</strong>: 开源项目分析、代码搜索</li>
+<li><strong>亮点</strong>: 仓库趋势、Star追踪</li>
+</ul>
+
+<h4>openai-whisper</h4>
+<ul>
+<li><strong>用途</strong>: 语音转文字</li>
+<li><strong>安装</strong>: <code>clawhub install openai-whisper</code></li>
+<li><strong>场景</strong>: 播客转录、会议记录</li>
+<li><strong>亮点</strong>: 本地运行，隐私保护</li>
+</ul>
+
+<h3>4. 竞品分析</h3>
+
+<h4>video-frames</h4>
+<ul>
+<li><strong>用途</strong>: 视频帧提取</li>
+<li><strong>安装</strong>: <code>clawhub install video-frames</code></li>
+<li><strong>场景</strong>: 视频内容分析、竞品视频研究</li>
+<li><strong>亮点</strong>: 关键帧自动提取</li>
+</ul>
+
+<h4>songsee</h4>
+<ul>
+<li><strong>用途</strong>: 音频可视化分析</li>
+<li><strong>安装</strong>: <code>clawhub install songsee</code></li>
+<li><strong>场景</strong>: 音频内容分析</li>
+<li><strong>亮点</strong>: 频谱图生成</li>
+</ul>
+
+<h4>gh-issues</h4>
+<ul>
+<li><strong>用途</strong>: GitHub Issues分析</li>
+<li><strong>安装</strong>: <code>clawhub install gh-issues</code></li>
+<li><strong>场景</strong>: 用户反馈分析、需求挖掘</li>
+<li><strong>亮点</strong>: 自然语言查询</li>
+</ul>
+
+<h3>5. 知识管理</h3>
+
+<h4>obsidian</h4>
+<ul>
+<li><strong>用途</strong>: 知识库管理</li>
+<li><strong>安装</strong>: <code>clawhub install obsidian</code></li>
+<li><strong>场景</strong>: 研究成果整理、双链笔记</li>
+<li><strong>亮点</strong>: 强大的链接和图谱功能</li>
+</ul>
+
+<h4>bear-notes</h4>
+<ul>
+<li><strong>用途</strong>: 笔记管理</li>
+<li><strong>安装</strong>: <code>clawhub install bear-notes</code></li>
+<li><strong>场景</strong>: 快速记录、标签管理</li>
+<li><strong>亮点</strong>: 优雅的Markdown体验</li>
+</ul>
+
+<h3>6. 工作流编排</h3>
+
+<h4>gemini</h4>
+<ul>
+<li><strong>用途</strong>: Google Gemini AI</li>
+<li><strong>安装</strong>: <code>clawhub install gemini</code></li>
+<li><strong>场景</strong>: 复杂分析、多模态处理</li>
+<li><strong>亮点</strong>: 强大的理解和生成能力</li>
+</ul>
+
+<h4>nano-pdf</h4>
+<ul>
+<li><strong>用途</strong>: PDF处理</li>
+<li><strong>安装</strong>: <code>clawhub install nano-pdf</code></li>
+<li><strong>场景</strong>: PDF合并、分割、提取</li>
+<li><strong>亮点</strong>: 轻量级PDF操作</li>
+</ul>
+
+<h4>clawhub</h4>
+<ul>
+<li><strong>用途</strong>: Skill管理</li>
+<li><strong>安装</strong>: 内置</li>
+<li><strong>场景</strong>: 搜索、安装、更新skills</li>
+<li><strong>亮点</strong>: 丰富的skill生态</li>
+</ul>
+
+<h2>实战工作流</h2>
+
+<h3>工作流1: 竞品调研</h3>
+
+<pre><code># 1. 搜索竞品信息
+web_search "竞品名称 + 功能介绍 + 2024"
+
+# 2. 获取竞品官网内容
+web_fetch "https://竞品官网.com"
+
+# 3. 分析GitHub开源项目
+github search repos --topic "竞品关键词" --sort stars
+
+# 4. 监控社媒反馈
+twitter-automation search "竞品名称" --sentiment negative
+
+# 5. 生成调研报告
+openclaw "基于以上信息，生成竞品分析报告"</code></pre>
+
+<h3>工作流2: 趋势周报</h3>
+
+<pre><code># 1. 获取最新博客文章
+blogwatcher fetch --category "AI" --since "1 week ago"
+
+# 2. 搜索本周热点
+web_search "AI行业动态 本周" --freshness pw
+
+# 3. 总结关键内容
+summarize --urls "文章1,文章2,文章3" --format bullet
+
+# 4. 生成周报
+openclaw "生成本周AI行业趋势周报"</code></pre>
+
+<h3>工作流3: 论文速览</h3>
+
+<pre><code># 1. 下载论文PDF
+web_fetch "https://arxiv.org/pdf/xxx.pdf"
+
+# 2. 提取论文内容
+pdf extract --file paper.pdf
+
+# 3. 生成摘要
+summarize --file paper.pdf --format academic
+
+# 4. 保存到知识库
+obsidian add "论文摘要" --vault Research</code></pre>
+
+<h3>工作流4: 开源项目评估</h3>
+
+<pre><code># 1. 获取项目信息
+github repo view owner/repo
+
+# 2. 分析Issue反馈
+gh-issues list --repo owner/repo --label bug
+
+# 3. 查看代码趋势
+github insights --repo owner/repo --metric commits
+
+# 4. 生成评估报告
+openclaw "评估这个开源项目的成熟度和采用价值"</code></pre>
+
+<h2>快速参考卡</h2>
+
+<h3>按需求类型推荐</h3>
+
+<table>
+<tr><th>需求</th><th>推荐Skills</th></tr>
+<tr><td>快速查资料</td><td>web_search, web_fetch</td></tr>
+<tr><td>深度调研</td><td>browser, agent-browser, summarize</td></tr>
+<tr><td>论文阅读</td><td>pdf, summarize, obsidian</td></tr>
+<tr><td>竞品监控</td><td>blogwatcher, twitter-automation</td></tr>
+<tr><td>用户反馈</td><td>gh-issues, twitter-automation</td></tr>
+<tr><td>会议记录</td><td>openai-whisper, summarize</td></tr>
+</table>
+
+<h2>效率提升数据</h2>
+
+<table>
+<tr><th>任务</th><th>传统方式</th><th>OpenClaw</th><th>提升</th></tr>
+<tr><td>资料搜集</td><td>2小时</td><td>10分钟</td><td>12x</td></tr>
+<tr><td>论文阅读</td><td>4小时</td><td>20分钟</td><td>12x</td></tr>
+<tr><td>竞品分析</td><td>1天</td><td>1小时</td><td>8x</td></tr>
+<tr><td>趋势监控</td><td>手动追踪</td><td>自动聚合</td><td>∞</td></tr>
+</table>
+
+<h2>最佳实践</h2>
+
+<ol>
+<li><strong>组合使用</strong>: 搜索+总结+存储形成完整工作流</li>
+<li><strong>定期监控</strong>: 设置blogwatcher定期获取更新</li>
+<li><strong>知识沉淀</strong>: 将研究结果保存到Obsidian形成知识库</li>
+<li><strong>成本控制</strong>: 本地skills优先，API调用合理使用</li>
+</ol>
+
+<hr>
+
+<p><em>PowerClaw - 让AI成为你的研究助手</em></p>
+
+    </article>
+</body>
+</html>
